@@ -75,7 +75,7 @@ export async function POST(request: Request) {
       ENTERPRISE: Infinity,
     };
 
-    const maxDomains = planLimits[publisher.plan];
+    const maxDomains = planLimits[publisher.plan as keyof typeof planLimits];
     if (publisher.domains.length >= maxDomains) {
       return NextResponse.json(
         { error: `Dein Plan erlaubt maximal ${maxDomains} Domain(s)` },
