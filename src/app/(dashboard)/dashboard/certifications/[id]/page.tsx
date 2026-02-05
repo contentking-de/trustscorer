@@ -188,7 +188,7 @@ export default async function CertificationDetailPage({
               <div className="p-4 bg-gray-100 rounded-lg">
                 <code className="text-sm break-all">{embedCode}</code>
               </div>
-              <CertificationActions embedCode={embedCode} verifyUrl={verifyUrl} />
+              <CertificationActions certificationId={certification.id} embedCode={embedCode} verifyUrl={verifyUrl} />
             </CardContent>
           </Card>
         </div>
