@@ -40,7 +40,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `Transparenz-Zertifikat | ${certification.contentTitle || certification.publisher.companyName || "Trustscorer"}`,
+    title: `Transparenz-Zertifikat | ${certification.contentTitle || certification.publisher.companyName || "Certiread"}`,
     description: `Verifiziertes Transparenz-Zertifikat für ${certification.contentUrl}`,
   };
 }
@@ -100,7 +100,7 @@ export default async function VerifyPage({
                 />
               </svg>
             </div>
-            <span className="text-lg font-bold text-gray-900">Trustscorer</span>
+            <span className="text-lg font-bold text-gray-900">Certiread</span>
           </Link>
           <span className="text-sm text-gray-500">Transparenz-Zertifikat</span>
         </div>
@@ -312,7 +312,7 @@ export default async function VerifyPage({
           <p>
             Dieses Zertifikat wurde über{" "}
             <Link href="/" className="text-emerald-600 hover:text-emerald-700">
-              Trustscorer
+              Certiread
             </Link>{" "}
             ausgestellt.
           </p>

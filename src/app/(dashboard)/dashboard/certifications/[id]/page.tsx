@@ -62,7 +62,7 @@ export default async function CertificationDetailPage({
     notFound();
   }
 
-  const baseUrl = process.env.NEXTAUTH_URL || "https://trustscorer.de";
+  const baseUrl = process.env.NEXTAUTH_URL || "https://certiread.de";
   const verifyUrl = `${baseUrl}/verify/${certification.uniqueCode}`;
   const embedCode = `<script src="${baseUrl}/badge.js" data-certification="${certification.uniqueCode}" async></script>`;
 

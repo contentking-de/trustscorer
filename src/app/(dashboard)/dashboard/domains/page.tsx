@@ -267,7 +267,7 @@ export default function DomainsPage() {
                   Füge einen TXT-Record zu deinen DNS-Einstellungen hinzu:
                 </p>
                 <code className="block p-3 bg-gray-100 rounded text-sm break-all">
-                  trustscorer-verify={selectedDomain.verificationToken}
+                  certiread-verify={selectedDomain.verificationToken}
                 </code>
                 <Button
                   className="mt-4 w-full"
@@ -286,7 +286,7 @@ export default function DomainsPage() {
                   Füge diesen Meta-Tag in den &lt;head&gt; deiner Website ein:
                 </p>
                 <code className="block p-3 bg-gray-100 rounded text-sm break-all">
-                  &lt;meta name=&quot;trustscorer-verify&quot; content=&quot;{selectedDomain.verificationToken}&quot;&gt;
+                  &lt;meta name=&quot;certiread-verify&quot; content=&quot;{selectedDomain.verificationToken}&quot;&gt;
                 </code>
                 <Button
                   className="mt-4 w-full"

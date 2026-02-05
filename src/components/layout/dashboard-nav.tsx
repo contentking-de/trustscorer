@@ -77,7 +77,7 @@ export function DashboardNav({ user }: DashboardNavProps) {
                 />
               </svg>
             </div>
-            <span className="text-lg font-bold text-gray-900">Trustscorer</span>
+            <span className="text-lg font-bold text-gray-900">Certiread</span>
           </div>
 
           {/* Navigation */}
@@ -148,7 +148,7 @@ export function DashboardNav({ user }: DashboardNavProps) {
               />
             </svg>
           </div>
-          <span className="text-lg font-bold text-gray-900">Trustscorer</span>
+          <span className="text-lg font-bold text-gray-900">Certiread</span>
         </div>
         <nav className="flex items-center gap-2">
           {navigation.map((item) => {

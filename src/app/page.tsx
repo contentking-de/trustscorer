@@ -24,7 +24,7 @@ export default function HomePage() {
                   />
                 </svg>
               </div>
-              <span className="text-xl font-bold text-gray-900">Trustscorer</span>
+              <span className="text-xl font-bold text-gray-900">Certiread</span>
             </div>
             <div className="flex items-center gap-4">
               <Link
@@ -93,7 +93,7 @@ export default function HomePage() {
                 </div>
                 <div className="text-left">
                   <p className="font-semibold text-gray-900">Transparenz-Zertifikat</p>
-                  <p className="text-sm text-gray-500">Verifiziert von Trustscorer</p>
+                  <p className="text-sm text-gray-500">Verifiziert von Certiread</p>
                 </div>
               </div>
               <div className="space-y-2 text-left text-sm">
@@ -407,7 +407,7 @@ export default function HomePage() {
                   />
                 </svg>
               </div>
-              <span className="text-xl font-bold text-white">Trustscorer</span>
+              <span className="text-xl font-bold text-white">Certiread</span>
             </div>
             <div className="flex gap-6 text-gray-400 text-sm">
               <Link href="/privacy" className="hover:text-white">
@@ -422,7 +422,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} Trustscorer. Alle Rechte vorbehalten.
+            &copy; {new Date().getFullYear()} Certiread. Alle Rechte vorbehalten.
           </div>
         </div>
       </footer>

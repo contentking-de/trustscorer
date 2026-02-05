@@ -10,8 +10,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Trustscorer - Content Transparenz-Zertifizierung",
-    template: "%s | Trustscorer",
+    default: "Certiread - Content Transparenz-Zertifizierung",
+    template: "%s | Certiread",
   },
   description:
     "Dokumentiere deinen Content-Erstellungsprozess transparent und baue Vertrauen bei deinen Lesern auf.",

@@ -45,7 +45,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Domain nicht gefunden" }, { status: 404 });
     }
 
-    const dnsToken = `trustscorer-verify=${domain.verificationToken}`;
+    const dnsToken = `certiread-verify=${domain.verificationToken}`;
     let verified = false;
 
     if (method === "DNS") {
@@ -73,10 +73,10 @@ export async function POST(request: Request) {
         "Accept-Language": "de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7",
       };
 
-      // Regex to check for meta tag format: <meta name="trustscorer-verify" content="TOKEN">
+      // Regex to check for meta tag format: <meta name="certiread-verify" content="TOKEN">
       const metaTagPattern = new RegExp(
-        `<meta[^>]*name=["']trustscorer-verify["'][^>]*content=["']${domain.verificationToken}["'][^>]*>|` +
-        `<meta[^>]*content=["']${domain.verificationToken}["'][^>]*name=["']trustscorer-verify["'][^>]*>`,
+        `<meta[^>]*name=["']certiread-verify["'][^>]*content=["']${domain.verificationToken}["'][^>]*>|` +
+        `<meta[^>]*content=["']${domain.verificationToken}["'][^>]*name=["']certiread-verify["'][^>]*>`,
         'i'
       );
 
@@ -153,7 +153,7 @@ export async function POST(request: Request) {
       });
 
       const methodHint = method === "META" 
-        ? `Stelle sicher, dass das Meta-Tag <meta name="trustscorer-verify" content="${domain.verificationToken}"> im <head> Bereich deiner Seite ${domain.domain} vorhanden ist.`
+        ? `Stelle sicher, dass das Meta-Tag <meta name="certiread-verify" content="${domain.verificationToken}"> im <head> Bereich deiner Seite ${domain.domain} vorhanden ist.`
         : `Stelle sicher, dass der TXT-Record "${dnsToken}" für ${domain.domain} korrekt eingerichtet ist.`;
 
       return NextResponse.json({
