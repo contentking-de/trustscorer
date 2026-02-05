@@ -28,11 +28,11 @@ export default async function DashboardPage() {
   });
 
   const verifiedDomains = publisher?.domains.filter(
-    (d) => d.verificationStatus === "VERIFIED"
+    (d: { verificationStatus: string }) => d.verificationStatus === "VERIFIED"
   ).length || 0;
 
   const totalImpressions = publisher?.certifications.reduce(
-    (acc, cert) => acc + cert.badgeImpressions,
+    (acc: number, cert: { badgeImpressions: number }) => acc + cert.badgeImpressions,
     0
   ) || 0;
 
