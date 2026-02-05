@@ -5,6 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
+interface Domain {
+  id: string;
+  domain: string;
+}
+
 interface Author {
   id: string;
   name: string;
@@ -13,6 +18,7 @@ interface Author {
   verified: boolean;
   verifiedAt: string | null;
   createdAt: string;
+  domains: Domain[];
   _count: {
     certifications: number;
   };
@@ -20,6 +26,7 @@ interface Author {
 
 export default function AuthorsPage() {
   const [authors, setAuthors] = useState<Author[]>([]);
+  const [verifiedDomains, setVerifiedDomains] = useState<Domain[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -32,10 +39,12 @@ export default function AuthorsPage() {
     name: "",
     email: "",
     bio: "",
+    domainIds: [] as string[],
   });
 
   useEffect(() => {
     fetchAuthors();
+    fetchDomains();
   }, []);
 
   async function fetchAuthors() {
@@ -50,8 +59,22 @@ export default function AuthorsPage() {
     }
   }
 
+  async function fetchDomains() {
+    try {
+      const res = await fetch("/api/domains");
+      const data = await res.json();
+      // Filter only verified domains
+      const verified = (data.domains || []).filter(
+        (d: { verificationStatus: string }) => d.verificationStatus === "VERIFIED"
+      );
+      setVerifiedDomains(verified);
+    } catch {
+      // Silently fail, domains will just be empty
+    }
+  }
+
   function resetForm() {
-    setFormData({ name: "", email: "", bio: "" });
+    setFormData({ name: "", email: "", bio: "", domainIds: [] });
     setEditingAuthor(null);
     setShowForm(false);
   }
@@ -61,9 +84,19 @@ export default function AuthorsPage() {
       name: author.name,
       email: author.email || "",
       bio: author.bio || "",
+      domainIds: author.domains.map((d) => d.id),
     });
     setEditingAuthor(author);
     setShowForm(true);
+  }
+
+  function toggleDomain(domainId: string) {
+    setFormData((prev) => ({
+      ...prev,
+      domainIds: prev.domainIds.includes(domainId)
+        ? prev.domainIds.filter((id) => id !== domainId)
+        : [...prev.domainIds, domainId],
+    }));
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -230,8 +263,43 @@ export default function AuthorsPage() {
                   onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
                 />
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Domains *
+                </label>
+                {verifiedDomains.length === 0 ? (
+                  <p className="text-sm text-amber-600 bg-amber-50 p-3 rounded-lg">
+                    Du musst zuerst mindestens eine Domain verifizieren, bevor du Autoren anlegen kannst.
+                  </p>
+                ) : (
+                  <div className="space-y-2">
+                    {verifiedDomains.map((domain) => (
+                      <label
+                        key={domain.id}
+                        className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${
+                          formData.domainIds.includes(domain.id)
+                            ? "border-emerald-500 bg-emerald-50"
+                            : "border-gray-200 hover:border-gray-300"
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={formData.domainIds.includes(domain.id)}
+                          onChange={() => toggleDomain(domain.id)}
+                          className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                        />
+                        <span className="text-gray-900">{domain.domain}</span>
+                      </label>
+                    ))}
+                  </div>
+                )}
+              </div>
               <div className="flex gap-3">
-                <Button type="submit" isLoading={isAdding || isSaving}>
+                <Button 
+                  type="submit" 
+                  isLoading={isAdding || isSaving}
+                  disabled={formData.domainIds.length === 0 || verifiedDomains.length === 0}
+                >
                   {editingAuthor ? "Speichern" : "Hinzufügen"}
                 </Button>
                 <Button type="button" variant="outline" onClick={resetForm}>
@@ -289,6 +357,18 @@ export default function AuthorsPage() {
                         )}
                         {author.bio && (
                           <p className="text-sm text-gray-600 mt-1 line-clamp-2">{author.bio}</p>
+                        )}
+                        {author.domains.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mt-2">
+                            {author.domains.map((domain) => (
+                              <span
+                                key={domain.id}
+                                className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-700"
+                              >
+                                {domain.domain}
+                              </span>
+                            ))}
+                          </div>
                         )}
                         <div className="flex items-center gap-4 mt-2 text-xs text-gray-400">
                           <span>{author._count.certifications} Zertifizierung(en)</span>

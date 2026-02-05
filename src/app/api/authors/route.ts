@@ -8,6 +8,7 @@ const authorSchema = z.object({
   name: z.string().min(1, "Name ist erforderlich"),
   email: z.string().email("Ungültige E-Mail-Adresse").optional().or(z.literal("")),
   bio: z.string().optional(),
+  domainIds: z.array(z.string()).min(1, "Mindestens eine Domain ist erforderlich"),
 });
 
 export async function GET() {
@@ -24,6 +25,9 @@ export async function GET() {
         authors: {
           orderBy: { createdAt: "desc" },
           include: {
+            domains: {
+              select: { id: true, domain: true },
+            },
             _count: {
               select: { certifications: true },
             },
@@ -52,11 +56,16 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, email, bio } = authorSchema.parse(body);
+    const { name, email, bio, domainIds } = authorSchema.parse(body);
 
     const publisher = await prisma.publisher.findUnique({
       where: { userId: session.user.id },
-      include: { authors: true },
+      include: { 
+        authors: true,
+        domains: {
+          where: { verificationStatus: "VERIFIED" },
+        },
+      },
     });
 
     if (!publisher) {
@@ -96,13 +105,31 @@ export async function POST(request: Request) {
       }
     }
 
-    // Create author
+    // Validate that all domainIds belong to verified domains of this publisher
+    const validDomainIds = publisher.domains.map((d) => d.id);
+    const invalidDomains = domainIds.filter((id) => !validDomainIds.includes(id));
+    if (invalidDomains.length > 0) {
+      return NextResponse.json(
+        { error: "Eine oder mehrere Domains sind ungültig oder nicht verifiziert" },
+        { status: 400 }
+      );
+    }
+
+    // Create author with domain connections
     const newAuthor = await prisma.author.create({
       data: {
         publisherId: publisher.id,
         name,
         email: email || null,
         bio: bio || null,
+        domains: {
+          connect: domainIds.map((id) => ({ id })),
+        },
+      },
+      include: {
+        domains: {
+          select: { id: true, domain: true },
+        },
       },
     });
 
@@ -129,14 +156,23 @@ export async function PUT(request: Request) {
     }
 
     const body = await request.json();
-    const { id, name, email, bio } = body;
+    const { id, name, email, bio, domainIds } = body;
 
     if (!id) {
       return NextResponse.json({ error: "Autor-ID erforderlich" }, { status: 400 });
     }
 
+    if (!domainIds || domainIds.length === 0) {
+      return NextResponse.json({ error: "Mindestens eine Domain ist erforderlich" }, { status: 400 });
+    }
+
     const publisher = await prisma.publisher.findUnique({
       where: { userId: session.user.id },
+      include: {
+        domains: {
+          where: { verificationStatus: "VERIFIED" },
+        },
+      },
     });
 
     if (!publisher) {
@@ -172,12 +208,30 @@ export async function PUT(request: Request) {
       }
     }
 
+    // Validate that all domainIds belong to verified domains of this publisher
+    const validDomainIds = publisher.domains.map((d) => d.id);
+    const invalidDomains = domainIds.filter((domainId: string) => !validDomainIds.includes(domainId));
+    if (invalidDomains.length > 0) {
+      return NextResponse.json(
+        { error: "Eine oder mehrere Domains sind ungültig oder nicht verifiziert" },
+        { status: 400 }
+      );
+    }
+
     const updatedAuthor = await prisma.author.update({
       where: { id },
       data: {
         name: name || author.name,
         email: email || null,
         bio: bio || null,
+        domains: {
+          set: domainIds.map((domainId: string) => ({ id: domainId })),
+        },
+      },
+      include: {
+        domains: {
+          select: { id: true, domain: true },
+        },
       },
     });
 

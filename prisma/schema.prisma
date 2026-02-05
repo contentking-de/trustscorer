@@ -143,6 +143,7 @@ model Domain {
   verifiedAt          DateTime?
 
   certifications      Certification[]
+  authors             Author[]  @relation("AuthorDomains")
 
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
@@ -161,6 +162,7 @@ model Author {
   verified        Boolean  @default(false)
   verifiedAt      DateTime?
 
+  domains         Domain[]  @relation("AuthorDomains")
   certifications  Certification[]
 
   createdAt       DateTime @default(now())
