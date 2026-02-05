@@ -106,7 +106,7 @@ export function CertificationActions({ certificationId, embedCode, verifyUrl }: 
           <div className="flex items-center gap-2">
             <span className="text-sm text-gray-600">Wirklich löschen?</span>
             <Button
-              variant="destructive"
+              variant="danger"
               size="sm"
               onClick={handleDelete}
               disabled={isDeleting}

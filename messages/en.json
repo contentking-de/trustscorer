@@ -1,0 +1,270 @@
+{
+  "common": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "search": "Search",
+    "all": "All"
+  },
+  "nav": {
+    "brand": "Certiread",
+    "dashboard": "Dashboard",
+    "certifications": "Certifications",
+    "domains": "Domains",
+    "authors": "Authors",
+    "settings": "Settings"
+  },
+  "home": {
+    "hero": {
+      "badge": "Now in Beta",
+      "title": "Show how your",
+      "titleHighlight": "Content is created",
+      "description": "Document your creation process transparently and stand out from low-effort AI spam. Build trust with your readers.",
+      "cta": "Register for free",
+      "ctaSecondary": "How does it work?"
+    },
+    "badgePreview": {
+      "title": "Transparency Certificate",
+      "subtitle": "Verified by Certiread",
+      "humanWritten": "Human written",
+      "authorVerified": "Author verified",
+      "sourcesProvided": "Sources provided"
+    },
+    "problem": {
+      "title": "The Problem",
+      "description": "The internet is being flooded with AI-generated content. Readers cannot distinguish between carefully created content and low-effort SEO spam.",
+      "trustErosion": {
+        "title": "Trust Erosion",
+        "description": "Readers trust online content less and less. Even high-quality content is viewed with skepticism."
+      },
+      "wrongQuestion": {
+        "title": "Wrong Question",
+        "description": "\"Human or machine?\" is technically almost impossible to answer. The better question: \"How was this created?\""
+      },
+      "noDifferentiation": {
+        "title": "No Differentiation",
+        "description": "Publishers with real quality standards cannot stand out from the crowd."
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "description": "Get your transparency certificate in three simple steps",
+      "step1": {
+        "title": "Verify Domain",
+        "description": "Sign up and verify your domain via DNS record or meta tag."
+      },
+      "step2": {
+        "title": "Document Content",
+        "description": "Fill out the structured form: author, creation process, sources, fact-checking."
+      },
+      "step3": {
+        "title": "Embed Badge",
+        "description": "Copy the embed code and add the badge to your website. Done!"
+      }
+    },
+    "pricing": {
+      "title": "Simple Pricing",
+      "description": "Start for free and upgrade as you grow",
+      "perMonth": "/month",
+      "free": {
+        "name": "Free",
+        "description": "Perfect for trying out",
+        "price": "€0",
+        "features": {
+          "domains": "1 Domain",
+          "certifications": "5 Certifications/month",
+          "badge": "Standard Badge"
+        },
+        "cta": "Start for free"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "For active publishers",
+        "price": "€29",
+        "popular": "Popular",
+        "features": {
+          "domains": "3 Domains",
+          "certifications": "Unlimited Certifications",
+          "badge": "Custom Badge",
+          "analytics": "Analytics"
+        },
+        "cta": "Go Pro"
+      },
+      "business": {
+        "name": "Business",
+        "description": "For teams and agencies",
+        "price": "€99",
+        "features": {
+          "domains": "Unlimited Domains",
+          "team": "5 Team Accounts",
+          "api": "API Access",
+          "whiteLabel": "White-Label Option"
+        },
+        "cta": "Contact us"
+      }
+    },
+    "cta": {
+      "title": "Ready to build trust?",
+      "description": "Start for free now and show your readers how your content is created.",
+      "button": "Register for free now"
+    },
+    "footer": {
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "imprint": "Imprint",
+      "copyright": "All rights reserved."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "description": "Sign in to continue",
+      "email": "Email address",
+      "password": "Password",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "registerLink": "Register now",
+      "error": "Login failed. Please check your credentials."
+    },
+    "register": {
+      "title": "Create account",
+      "description": "Get started with Certiread",
+      "name": "Name",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "terms": "I accept the",
+      "termsLink": "Terms of Service",
+      "and": "and",
+      "privacyLink": "Privacy Policy",
+      "submit": "Register",
+      "hasAccount": "Already have an account?",
+      "loginLink": "Sign in now"
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome back",
+    "overview": "Overview",
+    "stats": {
+      "totalCertifications": "Certifications",
+      "activeDomains": "Active Domains",
+      "totalViews": "Badge Views",
+      "thisMonth": "This month"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "newCertification": "New Certification",
+      "addDomain": "Add Domain"
+    },
+    "recentCertifications": {
+      "title": "Recent Certifications",
+      "viewAll": "View all",
+      "noCertifications": "No certifications yet"
+    }
+  },
+  "certifications": {
+    "title": "Certifications",
+    "new": "New Certification",
+    "edit": "Edit Certification",
+    "list": {
+      "empty": "No certifications found",
+      "emptyDescription": "Create your first certification to get started."
+    },
+    "form": {
+      "url": "Article URL",
+      "urlPlaceholder": "https://example.com/article",
+      "title": "Article Title",
+      "titlePlaceholder": "The title of your article",
+      "author": "Author",
+      "selectAuthor": "Select author",
+      "contentType": "Content Type",
+      "humanWritten": "Human written",
+      "aiAssisted": "AI-assisted",
+      "aiGenerated": "AI-generated",
+      "factChecked": "Fact-checked",
+      "sourcesProvided": "Sources provided",
+      "editorialReview": "Editorial review",
+      "notes": "Notes",
+      "notesPlaceholder": "Additional information about the creation process..."
+    },
+    "status": {
+      "active": "Active",
+      "revoked": "Revoked"
+    },
+    "detail": {
+      "viewBadge": "View Badge",
+      "copyCode": "Copy Code",
+      "embedCode": "Embed Code",
+      "revoke": "Revoke",
+      "restore": "Restore"
+    }
+  },
+  "domains": {
+    "title": "Domains",
+    "add": "Add Domain",
+    "verify": "Verify",
+    "status": {
+      "verified": "Verified",
+      "pending": "Pending",
+      "failed": "Failed"
+    },
+    "verification": {
+      "title": "Verify Domain",
+      "description": "Add one of the following records to verify your domain:",
+      "dns": "DNS TXT Record",
+      "meta": "Meta Tag"
+    }
+  },
+  "authors": {
+    "title": "Authors",
+    "add": "Add Author",
+    "edit": "Edit Author",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "John Doe",
+      "email": "Email",
+      "emailPlaceholder": "john@example.com",
+      "bio": "Biography",
+      "bioPlaceholder": "Short description of the author...",
+      "image": "Profile Picture"
+    },
+    "list": {
+      "empty": "No authors found",
+      "emptyDescription": "Add your first author."
+    }
+  },
+  "verify": {
+    "title": "Verify Certificate",
+    "valid": "Valid Certificate",
+    "revoked": "Revoked Certificate",
+    "notFound": "Certificate not found",
+    "details": {
+      "url": "Article",
+      "author": "Author",
+      "created": "Created on",
+      "contentType": "Content Type",
+      "factChecked": "Fact-checked",
+      "sourcesProvided": "Sources provided",
+      "editorialReview": "Editorial review"
+    },
+    "backToSite": "Back to website"
+  },
+  "languages": {
+    "de": "Deutsch",
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "it": "Italiano"
+  }
+}

@@ -3,7 +3,8 @@
 import { useState, Suspense } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
@@ -14,6 +15,7 @@ function LoginForm() {
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const t = useTranslations("auth.login");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,13 +34,13 @@ function LoginForm() {
       });
 
       if (result?.error) {
-        setError(result.error);
+        setError(t("error"));
       } else {
         router.push(callbackUrl);
         router.refresh();
       }
     } catch {
-      setError("Ein Fehler ist aufgetreten");
+      setError(t("error"));
     } finally {
       setIsLoading(false);
     }
@@ -62,10 +64,8 @@ function LoginForm() {
             />
           </svg>
         </div>
-        <CardTitle>Willkommen zurück</CardTitle>
-        <CardDescription>
-          Melde dich an, um deine Zertifizierungen zu verwalten
-        </CardDescription>
+        <CardTitle>{t("title")}</CardTitle>
+        <CardDescription>{t("description")}</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -79,8 +79,8 @@ function LoginForm() {
             id="email"
             name="email"
             type="email"
-            label="E-Mail"
-            placeholder="name@beispiel.de"
+            label={t("email")}
+            placeholder="name@example.com"
             required
             autoComplete="email"
           />
@@ -89,24 +89,24 @@ function LoginForm() {
             id="password"
             name="password"
             type="password"
-            label="Passwort"
+            label={t("password")}
             placeholder="••••••••"
             required
             autoComplete="current-password"
           />
 
           <Button type="submit" className="w-full" isLoading={isLoading}>
-            Anmelden
+            {t("submit")}
           </Button>
         </form>
 
         <div className="mt-6 text-center text-sm text-gray-600">
-          Noch kein Konto?{" "}
+          {t("noAccount")}{" "}
           <Link
             href="/register"
             className="text-blue-600 hover:text-blue-700 font-medium"
           >
-            Jetzt registrieren
+            {t("registerLink")}
           </Link>
         </div>
       </CardContent>

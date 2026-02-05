@@ -1,13 +1,19 @@
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+import { setRequestLocale } from "next-intl/server";
 import { authOptions } from "@/lib/auth";
 import { DashboardNav } from "@/components/layout/dashboard-nav";
 
 export default async function DashboardLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const session = await getServerSession(authOptions);
 
   if (!session) {

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
@@ -11,6 +12,8 @@ export default function RegisterPage() {
   const router = useRouter();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const t = useTranslations("auth.register");
+  const tCommon = useTranslations("common");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -33,13 +36,13 @@ export default function RegisterPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error || "Ein Fehler ist aufgetreten");
+        setError(data.error || tCommon("error"));
         return;
       }
 
       router.push("/login?registered=true");
     } catch {
-      setError("Ein Fehler ist aufgetreten");
+      setError(tCommon("error"));
     } finally {
       setIsLoading(false);
     }
@@ -64,10 +67,8 @@ export default function RegisterPage() {
               />
             </svg>
           </div>
-          <CardTitle>Konto erstellen</CardTitle>
-          <CardDescription>
-            Starte mit deiner ersten Content-Zertifizierung
-          </CardDescription>
+          <CardTitle>{t("title")}</CardTitle>
+          <CardDescription>{t("description")}</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -81,7 +82,7 @@ export default function RegisterPage() {
               id="name"
               name="name"
               type="text"
-              label="Name"
+              label={t("name")}
               placeholder="Max Mustermann"
               required
               autoComplete="name"
@@ -91,8 +92,8 @@ export default function RegisterPage() {
               id="email"
               name="email"
               type="email"
-              label="E-Mail"
-              placeholder="name@beispiel.de"
+              label={t("email")}
+              placeholder="name@example.com"
               required
               autoComplete="email"
             />
@@ -101,8 +102,8 @@ export default function RegisterPage() {
               id="companyName"
               name="companyName"
               type="text"
-              label="Unternehmen (optional)"
-              placeholder="Meine Firma GmbH"
+              label="Company (optional)"
+              placeholder="Company Inc."
               autoComplete="organization"
             />
 
@@ -110,37 +111,37 @@ export default function RegisterPage() {
               id="password"
               name="password"
               type="password"
-              label="Passwort"
-              placeholder="Mindestens 8 Zeichen"
+              label={t("password")}
+              placeholder="••••••••"
               required
               minLength={8}
               autoComplete="new-password"
             />
 
             <Button type="submit" className="w-full" isLoading={isLoading}>
-              Registrieren
+              {t("submit")}
             </Button>
           </form>
 
           <p className="mt-4 text-xs text-gray-500 text-center">
-            Mit der Registrierung stimmst du unseren{" "}
+            {t("terms")}{" "}
             <Link href="/terms" className="text-blue-600 hover:underline">
-              Nutzungsbedingungen
+              {t("termsLink")}
             </Link>{" "}
-            und{" "}
+            {t("and")}{" "}
             <Link href="/privacy" className="text-blue-600 hover:underline">
-              Datenschutzrichtlinien
-            </Link>{" "}
-            zu.
+              {t("privacyLink")}
+            </Link>
+            .
           </p>
 
           <div className="mt-6 text-center text-sm text-gray-600">
-            Bereits ein Konto?{" "}
+            {t("hasAccount")}{" "}
             <Link
               href="/login"
               className="text-blue-600 hover:text-blue-700 font-medium"
             >
-              Jetzt anmelden
+              {t("loginLink")}
             </Link>
           </div>
         </CardContent>

@@ -1,0 +1,270 @@
+{
+  "common": {
+    "login": "Connexion",
+    "register": "S'inscrire",
+    "logout": "Déconnexion",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "back": "Retour",
+    "next": "Suivant",
+    "submit": "Soumettre",
+    "search": "Rechercher",
+    "all": "Tous"
+  },
+  "nav": {
+    "brand": "Certiread",
+    "dashboard": "Tableau de bord",
+    "certifications": "Certifications",
+    "domains": "Domaines",
+    "authors": "Auteurs",
+    "settings": "Paramètres"
+  },
+  "home": {
+    "hero": {
+      "badge": "Maintenant en bêta",
+      "title": "Montrez comment votre",
+      "titleHighlight": "contenu est créé",
+      "description": "Documentez votre processus de création de manière transparente et démarquez-vous du spam IA. Construisez la confiance avec vos lecteurs.",
+      "cta": "S'inscrire gratuitement",
+      "ctaSecondary": "Comment ça marche ?"
+    },
+    "badgePreview": {
+      "title": "Certificat de transparence",
+      "subtitle": "Vérifié par Certiread",
+      "humanWritten": "Écrit par un humain",
+      "authorVerified": "Auteur vérifié",
+      "sourcesProvided": "Sources fournies"
+    },
+    "problem": {
+      "title": "Le problème",
+      "description": "Internet est inondé de contenu généré par l'IA. Les lecteurs ne peuvent pas distinguer le contenu soigneusement créé du spam SEO sans effort.",
+      "trustErosion": {
+        "title": "Érosion de la confiance",
+        "description": "Les lecteurs font de moins en moins confiance au contenu en ligne. Même le contenu de haute qualité est regardé avec scepticisme."
+      },
+      "wrongQuestion": {
+        "title": "Mauvaise question",
+        "description": "\"Humain ou machine ?\" est techniquement presque impossible à répondre. La meilleure question : \"Comment cela a-t-il été créé ?\""
+      },
+      "noDifferentiation": {
+        "title": "Pas de différenciation",
+        "description": "Les éditeurs avec de vraies normes de qualité ne peuvent pas se démarquer de la masse."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment ça marche",
+      "description": "Obtenez votre certificat de transparence en trois étapes simples",
+      "step1": {
+        "title": "Vérifier le domaine",
+        "description": "Inscrivez-vous et vérifiez votre domaine via un enregistrement DNS ou une balise meta."
+      },
+      "step2": {
+        "title": "Documenter le contenu",
+        "description": "Remplissez le formulaire structuré : auteur, processus de création, sources, vérification des faits."
+      },
+      "step3": {
+        "title": "Intégrer le badge",
+        "description": "Copiez le code d'intégration et ajoutez le badge à votre site web. Terminé !"
+      }
+    },
+    "pricing": {
+      "title": "Tarification simple",
+      "description": "Commencez gratuitement et évoluez selon vos besoins",
+      "perMonth": "/mois",
+      "free": {
+        "name": "Gratuit",
+        "description": "Parfait pour essayer",
+        "price": "0€",
+        "features": {
+          "domains": "1 Domaine",
+          "certifications": "5 Certifications/mois",
+          "badge": "Badge standard"
+        },
+        "cta": "Commencer gratuitement"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "Pour les éditeurs actifs",
+        "price": "29€",
+        "popular": "Populaire",
+        "features": {
+          "domains": "3 Domaines",
+          "certifications": "Certifications illimitées",
+          "badge": "Badge personnalisé",
+          "analytics": "Analytiques"
+        },
+        "cta": "Passer Pro"
+      },
+      "business": {
+        "name": "Business",
+        "description": "Pour les équipes et agences",
+        "price": "99€",
+        "features": {
+          "domains": "Domaines illimités",
+          "team": "5 Comptes d'équipe",
+          "api": "Accès API",
+          "whiteLabel": "Option marque blanche"
+        },
+        "cta": "Nous contacter"
+      }
+    },
+    "cta": {
+      "title": "Prêt à construire la confiance ?",
+      "description": "Commencez gratuitement maintenant et montrez à vos lecteurs comment votre contenu est créé.",
+      "button": "S'inscrire gratuitement maintenant"
+    },
+    "footer": {
+      "privacy": "Confidentialité",
+      "terms": "CGV",
+      "imprint": "Mentions légales",
+      "copyright": "Tous droits réservés."
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Bon retour",
+      "description": "Connectez-vous pour continuer",
+      "email": "Adresse e-mail",
+      "password": "Mot de passe",
+      "forgotPassword": "Mot de passe oublié ?",
+      "submit": "Se connecter",
+      "noAccount": "Pas encore de compte ?",
+      "registerLink": "S'inscrire maintenant",
+      "error": "Échec de la connexion. Veuillez vérifier vos identifiants."
+    },
+    "register": {
+      "title": "Créer un compte",
+      "description": "Commencez avec Certiread",
+      "name": "Nom",
+      "email": "Adresse e-mail",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "terms": "J'accepte les",
+      "termsLink": "Conditions d'utilisation",
+      "and": "et",
+      "privacyLink": "Politique de confidentialité",
+      "submit": "S'inscrire",
+      "hasAccount": "Déjà un compte ?",
+      "loginLink": "Se connecter maintenant"
+    }
+  },
+  "dashboard": {
+    "welcome": "Bon retour",
+    "overview": "Aperçu",
+    "stats": {
+      "totalCertifications": "Certifications",
+      "activeDomains": "Domaines actifs",
+      "totalViews": "Vues du badge",
+      "thisMonth": "Ce mois-ci"
+    },
+    "quickActions": {
+      "title": "Actions rapides",
+      "newCertification": "Nouvelle certification",
+      "addDomain": "Ajouter un domaine"
+    },
+    "recentCertifications": {
+      "title": "Certifications récentes",
+      "viewAll": "Voir tout",
+      "noCertifications": "Aucune certification pour le moment"
+    }
+  },
+  "certifications": {
+    "title": "Certifications",
+    "new": "Nouvelle certification",
+    "edit": "Modifier la certification",
+    "list": {
+      "empty": "Aucune certification trouvée",
+      "emptyDescription": "Créez votre première certification pour commencer."
+    },
+    "form": {
+      "url": "URL de l'article",
+      "urlPlaceholder": "https://example.com/article",
+      "title": "Titre de l'article",
+      "titlePlaceholder": "Le titre de votre article",
+      "author": "Auteur",
+      "selectAuthor": "Sélectionner un auteur",
+      "contentType": "Type de contenu",
+      "humanWritten": "Écrit par un humain",
+      "aiAssisted": "Assisté par IA",
+      "aiGenerated": "Généré par IA",
+      "factChecked": "Faits vérifiés",
+      "sourcesProvided": "Sources fournies",
+      "editorialReview": "Révision éditoriale",
+      "notes": "Notes",
+      "notesPlaceholder": "Informations supplémentaires sur le processus de création..."
+    },
+    "status": {
+      "active": "Actif",
+      "revoked": "Révoqué"
+    },
+    "detail": {
+      "viewBadge": "Voir le badge",
+      "copyCode": "Copier le code",
+      "embedCode": "Code d'intégration",
+      "revoke": "Révoquer",
+      "restore": "Restaurer"
+    }
+  },
+  "domains": {
+    "title": "Domaines",
+    "add": "Ajouter un domaine",
+    "verify": "Vérifier",
+    "status": {
+      "verified": "Vérifié",
+      "pending": "En attente",
+      "failed": "Échoué"
+    },
+    "verification": {
+      "title": "Vérifier le domaine",
+      "description": "Ajoutez l'un des enregistrements suivants pour vérifier votre domaine :",
+      "dns": "Enregistrement DNS TXT",
+      "meta": "Balise Meta"
+    }
+  },
+  "authors": {
+    "title": "Auteurs",
+    "add": "Ajouter un auteur",
+    "edit": "Modifier l'auteur",
+    "form": {
+      "name": "Nom",
+      "namePlaceholder": "Jean Dupont",
+      "email": "E-mail",
+      "emailPlaceholder": "jean@example.com",
+      "bio": "Biographie",
+      "bioPlaceholder": "Courte description de l'auteur...",
+      "image": "Photo de profil"
+    },
+    "list": {
+      "empty": "Aucun auteur trouvé",
+      "emptyDescription": "Ajoutez votre premier auteur."
+    }
+  },
+  "verify": {
+    "title": "Vérifier le certificat",
+    "valid": "Certificat valide",
+    "revoked": "Certificat révoqué",
+    "notFound": "Certificat non trouvé",
+    "details": {
+      "url": "Article",
+      "author": "Auteur",
+      "created": "Créé le",
+      "contentType": "Type de contenu",
+      "factChecked": "Faits vérifiés",
+      "sourcesProvided": "Sources fournies",
+      "editorialReview": "Révision éditoriale"
+    },
+    "backToSite": "Retour au site"
+  },
+  "languages": {
+    "de": "Deutsch",
+    "en": "English",
+    "fr": "Français",
+    "es": "Español",
+    "it": "Italiano"
+  }
+}
