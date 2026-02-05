@@ -200,7 +200,7 @@ export default async function DashboardPage() {
           <CardContent>
             {publisher?.certifications && publisher.certifications.length > 0 ? (
               <div className="space-y-3">
-                {publisher.certifications.map((cert) => (
+                {publisher.certifications.map((cert: { id: string; contentTitle: string | null; contentUrl: string; domain: { domain: string }; status: string }) => (
                   <Link
                     key={cert.id}
                     href={`/dashboard/certifications/${cert.id}`}
