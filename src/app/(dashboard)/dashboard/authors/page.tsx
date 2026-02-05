@@ -15,6 +15,7 @@ interface Author {
   name: string;
   email: string | null;
   bio: string | null;
+  imageUrl: string | null;
   verified: boolean;
   verifiedAt: string | null;
   createdAt: string;
@@ -30,10 +31,13 @@ export default function AuthorsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editingAuthor, setEditingAuthor] = useState<Author | null>(null);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -77,6 +81,8 @@ export default function AuthorsPage() {
     setFormData({ name: "", email: "", bio: "", domainIds: [] });
     setEditingAuthor(null);
     setShowForm(false);
+    setPreviewImage(null);
+    setSelectedFile(null);
   }
 
   function handleEdit(author: Author) {
@@ -87,7 +93,82 @@ export default function AuthorsPage() {
       domainIds: author.domains.map((d) => d.id),
     });
     setEditingAuthor(author);
+    setPreviewImage(author.imageUrl);
+    setSelectedFile(null);
     setShowForm(true);
+  }
+
+  function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
+    if (!allowedTypes.includes(file.type)) {
+      setError("Nur JPEG, PNG, WebP und GIF Bilder sind erlaubt");
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      setError("Maximale Dateigröße ist 5MB");
+      return;
+    }
+
+    setSelectedFile(file);
+    setPreviewImage(URL.createObjectURL(file));
+    setError("");
+  }
+
+  async function uploadImage(authorId: string): Promise<string | null> {
+    if (!selectedFile) return editingAuthor?.imageUrl || null;
+
+    setIsUploading(true);
+    try {
+      const formData = new FormData();
+      formData.append("file", selectedFile);
+      formData.append("authorId", authorId);
+
+      const res = await fetch("/api/authors/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error);
+      }
+
+      return data.imageUrl;
+    } catch (err) {
+      console.error("Upload error:", err);
+      throw err;
+    } finally {
+      setIsUploading(false);
+    }
+  }
+
+  async function handleDeleteImage(authorId: string) {
+    if (!confirm("Profilbild wirklich löschen?")) return;
+
+    try {
+      const res = await fetch(`/api/authors/upload?authorId=${authorId}`, {
+        method: "DELETE",
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        setError(data.error);
+        return;
+      }
+
+      setSuccess("Profilbild gelöscht");
+      setPreviewImage(null);
+      fetchAuthors();
+    } catch {
+      setError("Fehler beim Löschen des Profilbilds");
+    }
   }
 
   function toggleDomain(domainId: string) {
@@ -107,6 +188,7 @@ export default function AuthorsPage() {
     if (editingAuthor) {
       setIsSaving(true);
       try {
+        // First update the author data
         const res = await fetch("/api/authors", {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -120,6 +202,18 @@ export default function AuthorsPage() {
           return;
         }
 
+        // Then upload image if selected
+        if (selectedFile) {
+          try {
+            await uploadImage(editingAuthor.id);
+          } catch {
+            setError("Autor aktualisiert, aber Bild-Upload fehlgeschlagen");
+            resetForm();
+            fetchAuthors();
+            return;
+          }
+        }
+
         setSuccess("Autor aktualisiert");
         resetForm();
         fetchAuthors();
@@ -131,6 +225,7 @@ export default function AuthorsPage() {
     } else {
       setIsAdding(true);
       try {
+        // First create the author
         const res = await fetch("/api/authors", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -142,6 +237,18 @@ export default function AuthorsPage() {
         if (!res.ok) {
           setError(data.error);
           return;
+        }
+
+        // Then upload image if selected
+        if (selectedFile && data.author?.id) {
+          try {
+            await uploadImage(data.author.id);
+          } catch {
+            setError("Autor erstellt, aber Bild-Upload fehlgeschlagen");
+            resetForm();
+            fetchAuthors();
+            return;
+          }
         }
 
         setSuccess("Autor hinzugefügt");
@@ -228,6 +335,65 @@ export default function AuthorsPage() {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Profile Image Upload */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Profilbild (optional)
+                </label>
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    {previewImage ? (
+                      <div className="relative">
+                        <img
+                          src={previewImage}
+                          alt="Vorschau"
+                          className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (editingAuthor?.imageUrl && previewImage === editingAuthor.imageUrl) {
+                              handleDeleteImage(editingAuthor.id);
+                            } else {
+                              setPreviewImage(editingAuthor?.imageUrl || null);
+                              setSelectedFile(null);
+                            }
+                          }}
+                          className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="w-20 h-20 rounded-full bg-gray-100 flex items-center justify-center border-2 border-dashed border-gray-300">
+                        <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  <div>
+                    <label className="cursor-pointer">
+                      <span className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                        <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        Bild auswählen
+                      </span>
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp,image/gif"
+                        onChange={handleFileSelect}
+                        className="hidden"
+                      />
+                    </label>
+                    <p className="text-xs text-gray-500 mt-1">JPG, PNG, WebP oder GIF. Max. 5MB</p>
+                  </div>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Name *
@@ -297,12 +463,12 @@ export default function AuthorsPage() {
               <div className="flex gap-3">
                 <Button 
                   type="submit" 
-                  isLoading={isAdding || isSaving}
+                  isLoading={isAdding || isSaving || isUploading}
                   disabled={formData.domainIds.length === 0 || verifiedDomains.length === 0}
                 >
-                  {editingAuthor ? "Speichern" : "Hinzufügen"}
+                  {isUploading ? "Bild wird hochgeladen..." : editingAuthor ? "Speichern" : "Hinzufügen"}
                 </Button>
-                <Button type="button" variant="outline" onClick={resetForm}>
+                <Button type="button" variant="outline" onClick={resetForm} disabled={isAdding || isSaving || isUploading}>
                   Abbrechen
                 </Button>
               </div>
@@ -345,11 +511,19 @@ export default function AuthorsPage() {
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex items-start gap-3">
-                      <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                        <span className="text-emerald-700 font-medium">
-                          {author.name.charAt(0).toUpperCase()}
-                        </span>
-                      </div>
+                      {author.imageUrl ? (
+                        <img
+                          src={author.imageUrl}
+                          alt={author.name}
+                          className="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                        />
+                      ) : (
+                        <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                          <span className="text-emerald-700 font-medium">
+                            {author.name.charAt(0).toUpperCase()}
+                          </span>
+                        </div>
+                      )}
                       <div>
                         <p className="font-medium text-gray-900">{author.name}</p>
                         {author.email && (

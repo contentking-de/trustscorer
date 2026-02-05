@@ -159,6 +159,7 @@ model Author {
   name            String
   email           String?
   bio             String?  @db.Text
+  imageUrl        String?  // Vercel Blob URL for profile image
   verified        Boolean  @default(false)
   verifiedAt      DateTime?
 
