@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import dns from "dns";
 import { promisify } from "util";
+import { ProxyAgent, fetch as undiciFetch } from "undici";
 
 const resolveTxt = promisify(dns.resolveTxt);
 
@@ -72,19 +73,23 @@ export async function POST(request: Request) {
         "Accept-Language": "de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7",
       };
 
+      // Setup proxy agent if PROXY_URL is configured (e.g., IPRoyal Web Unblocker)
+      const proxyUrl = process.env.PROXY_URL;
+      const dispatcher = proxyUrl ? new ProxyAgent(proxyUrl) : undefined;
+      
+      if (proxyUrl) {
+        console.log("Using proxy for domain verification");
+      }
+
       for (const url of urlsToTry) {
         try {
           console.log(`Trying to verify domain at: ${url}`);
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
-
-          const response = await fetch(url, {
+          
+          const response = await undiciFetch(url, {
             headers,
             redirect: "follow",
-            signal: controller.signal,
+            dispatcher,
           });
-          
-          clearTimeout(timeoutId);
           
           if (!response.ok) {
             console.log(`URL ${url} returned status: ${response.status}`);
