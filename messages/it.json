@@ -155,22 +155,29 @@
   },
   "dashboard": {
     "welcome": "Bentornato",
-    "overview": "Panoramica",
+    "overview": "Ecco una panoramica delle tue certificazioni",
     "stats": {
       "totalCertifications": "Certificazioni",
-      "activeDomains": "Domini attivi",
-      "totalViews": "Visualizzazioni badge",
+      "activeDomains": "Domini verificati",
+      "authors": "Autori",
+      "totalViews": "Impressioni badge",
       "thisMonth": "Questo mese"
     },
     "quickActions": {
       "title": "Azioni rapide",
       "newCertification": "Nuova certificazione",
-      "addDomain": "Aggiungi dominio"
+      "newCertificationDesc": "Documentare i contenuti in modo trasparente",
+      "addDomain": "Aggiungi dominio",
+      "manageDomains": "Gestisci domini",
+      "domainsRegistered": "{count} dominio/i registrato/i",
+      "verifyDomain": "Verifica dominio",
+      "verifyDomainDesc": "Per creare certificazioni, devi prima verificare un dominio."
     },
     "recentCertifications": {
       "title": "Certificazioni recenti",
       "viewAll": "Vedi tutte",
-      "noCertifications": "Nessuna certificazione ancora"
+      "noCertifications": "Nessuna certificazione ancora",
+      "createFirst": "Crea la prima certificazione"
     }
   },
   "certifications": {

@@ -1,11 +1,22 @@
-import Link from "next/link";
 import { getServerSession } from "next-auth";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default async function DashboardPage() {
+export default async function DashboardPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  
+  const t = await getTranslations("dashboard");
+  const tCert = await getTranslations("certifications");
+  
   const session = await getServerSession(authOptions);
 
   const publisher = await prisma.publisher.findUnique({
@@ -41,10 +52,10 @@ export default async function DashboardPage() {
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-gray-900">
-          Willkommen zurück, {session?.user.name?.split(" ")[0] || "Publisher"}!
+          {t("welcome")}, {session?.user.name?.split(" ")[0] || "Publisher"}!
         </h1>
         <p className="text-gray-500 mt-1">
-          Hier ist eine Übersicht deiner Zertifizierungen
+          {t("overview")}
         </p>
       </div>
 
@@ -62,7 +73,7 @@ export default async function DashboardPage() {
                 <p className="text-2xl font-bold text-gray-900">
                   {publisher?._count.certifications || 0}
                 </p>
-                <p className="text-sm text-gray-500">Zertifizierungen</p>
+                <p className="text-sm text-gray-500">{t("stats.totalCertifications")}</p>
               </div>
             </div>
           </CardContent>
@@ -78,7 +89,7 @@ export default async function DashboardPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold text-gray-900">{verifiedDomains}</p>
-                <p className="text-sm text-gray-500">Verifizierte Domains</p>
+                <p className="text-sm text-gray-500">{t("stats.activeDomains")}</p>
               </div>
             </div>
           </CardContent>
@@ -96,7 +107,7 @@ export default async function DashboardPage() {
                 <p className="text-2xl font-bold text-gray-900">
                   {publisher?._count.authors || 0}
                 </p>
-                <p className="text-sm text-gray-500">Autoren</p>
+                <p className="text-sm text-gray-500">{t("stats.authors")}</p>
               </div>
             </div>
           </CardContent>
@@ -113,9 +124,9 @@ export default async function DashboardPage() {
               </div>
               <div>
                 <p className="text-2xl font-bold text-gray-900">
-                  {totalImpressions.toLocaleString("de-DE")}
+                  {totalImpressions.toLocaleString(locale)}
                 </p>
-                <p className="text-sm text-gray-500">Badge-Impressionen</p>
+                <p className="text-sm text-gray-500">{t("stats.totalViews")}</p>
               </div>
             </div>
           </CardContent>
@@ -127,7 +138,7 @@ export default async function DashboardPage() {
         {/* Getting Started / Actions */}
         <Card>
           <CardHeader>
-            <CardTitle>Schnellaktionen</CardTitle>
+            <CardTitle>{t("quickActions.title")}</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {verifiedDomains === 0 ? (
@@ -137,13 +148,13 @@ export default async function DashboardPage() {
                     <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                   </svg>
                   <div>
-                    <p className="font-medium text-amber-800">Domain verifizieren</p>
+                    <p className="font-medium text-amber-800">{t("quickActions.verifyDomain")}</p>
                     <p className="text-sm text-amber-700 mt-1">
-                      Um Zertifizierungen zu erstellen, musst du zuerst eine Domain verifizieren.
+                      {t("quickActions.verifyDomainDesc")}
                     </p>
                     <Link href="/dashboard/domains" className="mt-2 inline-block">
                       <Button size="sm" className="mt-2">
-                        Domain hinzufügen
+                        {t("quickActions.addDomain")}
                       </Button>
                     </Link>
                   </div>
@@ -159,8 +170,8 @@ export default async function DashboardPage() {
                       </svg>
                     </div>
                     <div>
-                      <p className="font-medium text-gray-900">Neue Zertifizierung</p>
-                      <p className="text-sm text-gray-500">Content transparent dokumentieren</p>
+                      <p className="font-medium text-gray-900">{t("quickActions.newCertification")}</p>
+                      <p className="text-sm text-gray-500">{t("quickActions.newCertificationDesc")}</p>
                     </div>
                   </div>
                 </div>
@@ -176,9 +187,9 @@ export default async function DashboardPage() {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">Domains verwalten</p>
+                    <p className="font-medium text-gray-900">{t("quickActions.manageDomains")}</p>
                     <p className="text-sm text-gray-500">
-                      {publisher?._count.domains || 0} Domain(s) registriert
+                      {t("quickActions.domainsRegistered", { count: publisher?._count.domains || 0 })}
                     </p>
                   </div>
                 </div>
@@ -190,10 +201,10 @@ export default async function DashboardPage() {
         {/* Recent Certifications */}
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle>Letzte Zertifizierungen</CardTitle>
+            <CardTitle>{t("recentCertifications.title")}</CardTitle>
             <Link href="/dashboard/certifications">
               <Button variant="ghost" size="sm">
-                Alle anzeigen
+                {t("recentCertifications.viewAll")}
               </Button>
             </Link>
           </CardHeader>
@@ -222,7 +233,7 @@ export default async function DashboardPage() {
                             : "bg-red-100 text-red-700"
                         }`}
                       >
-                        {cert.status === "ACTIVE" ? "Aktiv" : "Widerrufen"}
+                        {cert.status === "ACTIVE" ? tCert("status.active") : tCert("status.revoked")}
                       </span>
                     </div>
                   </Link>
@@ -233,11 +244,11 @@ export default async function DashboardPage() {
                 <svg className="w-12 h-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                <p>Noch keine Zertifizierungen</p>
+                <p>{t("recentCertifications.noCertifications")}</p>
                 {verifiedDomains > 0 && (
                   <Link href="/dashboard/certifications/new">
                     <Button size="sm" className="mt-3">
-                      Erste Zertifizierung erstellen
+                      {t("recentCertifications.createFirst")}
                     </Button>
                   </Link>
                 )}
