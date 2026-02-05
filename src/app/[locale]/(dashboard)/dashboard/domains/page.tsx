@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -16,6 +17,10 @@ interface Domain {
 }
 
 export default function DomainsPage() {
+  const t = useTranslations("domains");
+  const tCommon = useTranslations("common");
+  const locale = useLocale();
+  
   const [domains, setDomains] = useState<Domain[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
@@ -34,7 +39,7 @@ export default function DomainsPage() {
       const data = await res.json();
       setDomains(data.domains || []);
     } catch {
-      setError("Fehler beim Laden der Domains");
+      setError(t("errors.loadFailed"));
     } finally {
       setIsLoading(false);
     }
@@ -62,7 +67,7 @@ export default function DomainsPage() {
       setNewDomain("");
       fetchDomains();
     } catch {
-      setError("Fehler beim Hinzufügen der Domain");
+      setError(t("errors.addFailed"));
     } finally {
       setIsAdding(false);
     }
@@ -93,14 +98,14 @@ export default function DomainsPage() {
       fetchDomains();
       setSelectedDomain(null);
     } catch {
-      setError("Fehler bei der Verifizierung");
+      setError(t("errors.verifyFailed"));
     } finally {
       setVerifying(null);
     }
   }
 
   async function handleDelete(domainId: string) {
-    if (!confirm("Domain wirklich löschen? Alle zugehörigen Zertifizierungen werden ebenfalls gelöscht.")) {
+    if (!confirm(t("confirmDelete"))) {
       return;
     }
 
@@ -117,7 +122,7 @@ export default function DomainsPage() {
 
       fetchDomains();
     } catch {
-      setError("Fehler beim Löschen der Domain");
+      setError(t("errors.deleteFailed"));
     }
   }
 
@@ -136,9 +141,9 @@ export default function DomainsPage() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Domains</h1>
+        <h1 className="text-2xl font-bold text-gray-900">{t("title")}</h1>
         <p className="text-gray-500 mt-1">
-          Verwalte die Domains, für die du Zertifizierungen erstellen kannst
+          {t("description")}
         </p>
       </div>
 
@@ -151,22 +156,22 @@ export default function DomainsPage() {
       {/* Add Domain Form */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Domain hinzufügen</CardTitle>
+          <CardTitle>{t("add")}</CardTitle>
           <CardDescription>
-            Füge eine neue Domain hinzu, die du verifizieren möchtest
+            {t("addDescription")}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleAddDomain} className="flex gap-4">
             <Input
               type="text"
-              placeholder="beispiel.de"
+              placeholder="example.com"
               value={newDomain}
               onChange={(e) => setNewDomain(e.target.value)}
               className="flex-1"
             />
             <Button type="submit" isLoading={isAdding}>
-              Hinzufügen
+              {t("addButton")}
             </Button>
           </form>
         </CardContent>
@@ -175,7 +180,7 @@ export default function DomainsPage() {
       {/* Domains List */}
       <Card>
         <CardHeader>
-          <CardTitle>Deine Domains</CardTitle>
+          <CardTitle>{t("yourDomains")}</CardTitle>
         </CardHeader>
         <CardContent>
           {domains.length === 0 ? (
@@ -183,7 +188,7 @@ export default function DomainsPage() {
               <svg className="w-12 h-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
               </svg>
-              <p>Noch keine Domains registriert</p>
+              <p>{t("noDomains")}</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -215,8 +220,8 @@ export default function DomainsPage() {
                         <p className="font-medium text-gray-900">{domain.domain}</p>
                         <p className="text-sm text-gray-500">
                           {domain.verificationStatus === "VERIFIED"
-                            ? `Verifiziert am ${new Date(domain.verifiedAt!).toLocaleDateString("de-DE")}`
-                            : "Verifizierung ausstehend"}
+                            ? t("verifiedOn", { date: new Date(domain.verifiedAt!).toLocaleDateString(locale) })
+                            : t("status.pending")}
                         </p>
                       </div>
                     </div>
@@ -227,7 +232,7 @@ export default function DomainsPage() {
                           size="sm"
                           onClick={() => setSelectedDomain(domain)}
                         >
-                          Verifizieren
+                          {t("verify")}
                         </Button>
                       )}
                       <Button
@@ -254,17 +259,17 @@ export default function DomainsPage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <Card className="w-full max-w-lg">
             <CardHeader>
-              <CardTitle>Domain verifizieren</CardTitle>
+              <CardTitle>{t("verification.title")}</CardTitle>
               <CardDescription>
-                Wähle eine Methode, um {selectedDomain.domain} zu verifizieren
+                {t("verification.chooseMethod", { domain: selectedDomain.domain })}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               {/* DNS Method */}
               <div className="p-4 border border-gray-200 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-2">Option 1: DNS TXT-Record</h4>
+                <h4 className="font-medium text-gray-900 mb-2">{t("verification.dnsOption")}</h4>
                 <p className="text-sm text-gray-600 mb-3">
-                  Füge einen TXT-Record zu deinen DNS-Einstellungen hinzu:
+                  {t("verification.dnsDescription")}
                 </p>
                 <code className="block p-3 bg-gray-100 rounded text-sm break-all">
                   certiread-verify={selectedDomain.verificationToken}
@@ -275,15 +280,15 @@ export default function DomainsPage() {
                   isLoading={verifying?.domainId === selectedDomain.id && verifying?.method === "DNS"}
                   disabled={verifying !== null}
                 >
-                  DNS-Verifizierung prüfen
+                  {t("verification.checkDns")}
                 </Button>
               </div>
 
               {/* Meta Tag Method */}
               <div className="p-4 border border-gray-200 rounded-lg">
-                <h4 className="font-medium text-gray-900 mb-2">Option 2: Meta-Tag</h4>
+                <h4 className="font-medium text-gray-900 mb-2">{t("verification.metaOption")}</h4>
                 <p className="text-sm text-gray-600 mb-3">
-                  Füge diesen Meta-Tag in den &lt;head&gt; deiner Website ein:
+                  {t("verification.metaDescription")}
                 </p>
                 <code className="block p-3 bg-gray-100 rounded text-sm break-all">
                   &lt;meta name=&quot;certiread-verify&quot; content=&quot;{selectedDomain.verificationToken}&quot;&gt;
@@ -295,7 +300,7 @@ export default function DomainsPage() {
                   isLoading={verifying?.domainId === selectedDomain.id && verifying?.method === "META"}
                   disabled={verifying !== null}
                 >
-                  Meta-Tag-Verifizierung prüfen
+                  {t("verification.checkMeta")}
                 </Button>
               </div>
 
@@ -305,7 +310,7 @@ export default function DomainsPage() {
                 onClick={() => setSelectedDomain(null)}
                 disabled={verifying !== null}
               >
-                Abbrechen
+                {tCommon("cancel")}
               </Button>
             </CardContent>
           </Card>

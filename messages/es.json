@@ -182,11 +182,24 @@
   },
   "certifications": {
     "title": "Certificaciones",
+    "description": "Todas tus certificaciones de contenido de un vistazo",
     "new": "Nueva certificación",
     "edit": "Editar certificación",
+    "allCertifications": "Todas las certificaciones ({count})",
+    "createFirst": "Crear primera certificación",
+    "untitled": "Sin título",
     "list": {
-      "empty": "No se encontraron certificaciones",
-      "emptyDescription": "Crea tu primera certificación para empezar."
+      "empty": "No hay certificaciones",
+      "emptyDescription": "Crea tu primera certificación de contenido"
+    },
+    "table": {
+      "content": "Contenido",
+      "domain": "Dominio",
+      "status": "Estado",
+      "impressions": "Impresiones",
+      "date": "Fecha",
+      "actions": "Acciones",
+      "details": "Detalles"
     },
     "form": {
       "url": "URL del artículo",
@@ -219,24 +232,55 @@
   },
   "domains": {
     "title": "Dominios",
+    "description": "Gestiona los dominios para los que puedes crear certificaciones",
     "add": "Añadir dominio",
+    "addDescription": "Añade un nuevo dominio que quieras verificar",
+    "addButton": "Añadir",
+    "yourDomains": "Tus dominios",
+    "noDomains": "No hay dominios registrados",
     "verify": "Verificar",
+    "verifiedOn": "Verificado el {date}",
+    "confirmDelete": "¿Realmente eliminar el dominio? Todas las certificaciones asociadas también serán eliminadas.",
     "status": {
       "verified": "Verificado",
-      "pending": "Pendiente",
+      "pending": "Verificación pendiente",
       "failed": "Fallido"
     },
     "verification": {
       "title": "Verificar dominio",
-      "description": "Añade uno de los siguientes registros para verificar tu dominio:",
-      "dns": "Registro DNS TXT",
-      "meta": "Etiqueta Meta"
+      "chooseMethod": "Elige un método para verificar {domain}",
+      "dnsOption": "Opción 1: Registro DNS TXT",
+      "dnsDescription": "Añade un registro TXT a tu configuración DNS:",
+      "checkDns": "Comprobar verificación DNS",
+      "metaOption": "Opción 2: Etiqueta Meta",
+      "metaDescription": "Añade esta etiqueta meta en el <head> de tu sitio web:",
+      "checkMeta": "Comprobar etiqueta Meta"
+    },
+    "errors": {
+      "loadFailed": "Error al cargar los dominios",
+      "addFailed": "Error al añadir el dominio",
+      "verifyFailed": "Error en la verificación",
+      "deleteFailed": "Error al eliminar el dominio"
     }
   },
   "authors": {
     "title": "Autores",
+    "description": "Gestiona los autores que puedes asignar a las certificaciones",
     "add": "Añadir autor",
+    "addButton": "Añadir",
+    "addDescription": "Añade un nuevo autor que puedas asignar a las certificaciones",
     "edit": "Editar autor",
+    "editDescription": "Edita la información del autor",
+    "yourAuthors": "Tus autores",
+    "authorAdded": "Autor añadido",
+    "authorUpdated": "Autor actualizado",
+    "authorDeleted": "Autor eliminado",
+    "imageDeleted": "Foto de perfil eliminada",
+    "confirmDelete": "¿Realmente eliminar el autor?",
+    "confirmDeleteWithCerts": "Este autor tiene {count} certificación(es). Al eliminar se quitará el autor de estas certificaciones. ¿Continuar?",
+    "confirmDeleteImage": "¿Realmente eliminar la foto de perfil?",
+    "certificationCount": "{count} certificación(es)",
+    "createdOn": "Creado el {date}",
     "form": {
       "name": "Nombre",
       "namePlaceholder": "Juan García",
@@ -244,11 +288,29 @@
       "emailPlaceholder": "juan@example.com",
       "bio": "Biografía",
       "bioPlaceholder": "Breve descripción del autor...",
-      "image": "Foto de perfil"
+      "image": "Foto de perfil",
+      "optional": "opcional",
+      "preview": "Vista previa",
+      "selectImage": "Seleccionar imagen",
+      "imageHint": "JPG, PNG, WebP o GIF. Máx 5MB",
+      "domains": "Dominios",
+      "noVerifiedDomains": "Primero debes verificar al menos un dominio antes de poder añadir autores.",
+      "uploading": "Subiendo imagen..."
     },
     "list": {
-      "empty": "No se encontraron autores",
-      "emptyDescription": "Añade tu primer autor."
+      "empty": "No hay autores",
+      "emptyDescription": "Añade autores para asignarlos a las certificaciones"
+    },
+    "errors": {
+      "loadFailed": "Error al cargar los autores",
+      "addFailed": "Error al añadir el autor",
+      "updateFailed": "Error al actualizar el autor",
+      "deleteFailed": "Error al eliminar el autor",
+      "updateSuccessImageFailed": "Autor actualizado, pero falló la subida de imagen",
+      "createSuccessImageFailed": "Autor creado, pero falló la subida de imagen",
+      "deleteImageFailed": "Error al eliminar la foto de perfil",
+      "invalidFileType": "Solo se permiten imágenes JPEG, PNG, WebP y GIF",
+      "fileTooLarge": "El tamaño máximo del archivo es 5MB"
     }
   },
   "verify": {

@@ -182,11 +182,24 @@
   },
   "certifications": {
     "title": "Certifications",
+    "description": "Toutes vos certifications de contenu en un coup d'œil",
     "new": "Nouvelle certification",
     "edit": "Modifier la certification",
+    "allCertifications": "Toutes les certifications ({count})",
+    "createFirst": "Créer la première certification",
+    "untitled": "Sans titre",
     "list": {
-      "empty": "Aucune certification trouvée",
-      "emptyDescription": "Créez votre première certification pour commencer."
+      "empty": "Aucune certification",
+      "emptyDescription": "Créez votre première certification de contenu"
+    },
+    "table": {
+      "content": "Contenu",
+      "domain": "Domaine",
+      "status": "Statut",
+      "impressions": "Impressions",
+      "date": "Date",
+      "actions": "Actions",
+      "details": "Détails"
     },
     "form": {
       "url": "URL de l'article",
@@ -219,24 +232,55 @@
   },
   "domains": {
     "title": "Domaines",
+    "description": "Gérez les domaines pour lesquels vous pouvez créer des certifications",
     "add": "Ajouter un domaine",
+    "addDescription": "Ajoutez un nouveau domaine que vous souhaitez vérifier",
+    "addButton": "Ajouter",
+    "yourDomains": "Vos domaines",
+    "noDomains": "Aucun domaine enregistré",
     "verify": "Vérifier",
+    "verifiedOn": "Vérifié le {date}",
+    "confirmDelete": "Vraiment supprimer le domaine ? Toutes les certifications associées seront également supprimées.",
     "status": {
       "verified": "Vérifié",
-      "pending": "En attente",
+      "pending": "Vérification en attente",
       "failed": "Échoué"
     },
     "verification": {
       "title": "Vérifier le domaine",
-      "description": "Ajoutez l'un des enregistrements suivants pour vérifier votre domaine :",
-      "dns": "Enregistrement DNS TXT",
-      "meta": "Balise Meta"
+      "chooseMethod": "Choisissez une méthode pour vérifier {domain}",
+      "dnsOption": "Option 1 : Enregistrement DNS TXT",
+      "dnsDescription": "Ajoutez un enregistrement TXT à vos paramètres DNS :",
+      "checkDns": "Vérifier la vérification DNS",
+      "metaOption": "Option 2 : Balise Meta",
+      "metaDescription": "Ajoutez cette balise meta dans le <head> de votre site web :",
+      "checkMeta": "Vérifier la balise Meta"
+    },
+    "errors": {
+      "loadFailed": "Échec du chargement des domaines",
+      "addFailed": "Échec de l'ajout du domaine",
+      "verifyFailed": "Échec de la vérification",
+      "deleteFailed": "Échec de la suppression du domaine"
     }
   },
   "authors": {
     "title": "Auteurs",
+    "description": "Gérez les auteurs que vous pouvez attribuer aux certifications",
     "add": "Ajouter un auteur",
+    "addButton": "Ajouter",
+    "addDescription": "Ajoutez un nouvel auteur que vous pouvez attribuer aux certifications",
     "edit": "Modifier l'auteur",
+    "editDescription": "Modifiez les informations de l'auteur",
+    "yourAuthors": "Vos auteurs",
+    "authorAdded": "Auteur ajouté",
+    "authorUpdated": "Auteur mis à jour",
+    "authorDeleted": "Auteur supprimé",
+    "imageDeleted": "Photo de profil supprimée",
+    "confirmDelete": "Vraiment supprimer l'auteur ?",
+    "confirmDeleteWithCerts": "Cet auteur a {count} certification(s). La suppression retirera l'auteur de ces certifications. Continuer ?",
+    "confirmDeleteImage": "Vraiment supprimer la photo de profil ?",
+    "certificationCount": "{count} certification(s)",
+    "createdOn": "Créé le {date}",
     "form": {
       "name": "Nom",
       "namePlaceholder": "Jean Dupont",
@@ -244,11 +288,29 @@
       "emailPlaceholder": "jean@example.com",
       "bio": "Biographie",
       "bioPlaceholder": "Courte description de l'auteur...",
-      "image": "Photo de profil"
+      "image": "Photo de profil",
+      "optional": "optionnel",
+      "preview": "Aperçu",
+      "selectImage": "Sélectionner une image",
+      "imageHint": "JPG, PNG, WebP ou GIF. Max 5 Mo",
+      "domains": "Domaines",
+      "noVerifiedDomains": "Vous devez d'abord vérifier au moins un domaine avant de pouvoir ajouter des auteurs.",
+      "uploading": "Téléchargement de l'image..."
     },
     "list": {
-      "empty": "Aucun auteur trouvé",
-      "emptyDescription": "Ajoutez votre premier auteur."
+      "empty": "Aucun auteur",
+      "emptyDescription": "Ajoutez des auteurs pour les attribuer aux certifications"
+    },
+    "errors": {
+      "loadFailed": "Échec du chargement des auteurs",
+      "addFailed": "Échec de l'ajout de l'auteur",
+      "updateFailed": "Échec de la mise à jour de l'auteur",
+      "deleteFailed": "Échec de la suppression de l'auteur",
+      "updateSuccessImageFailed": "Auteur mis à jour, mais échec du téléchargement de l'image",
+      "createSuccessImageFailed": "Auteur créé, mais échec du téléchargement de l'image",
+      "deleteImageFailed": "Échec de la suppression de la photo de profil",
+      "invalidFileType": "Seuls les formats JPEG, PNG, WebP et GIF sont autorisés",
+      "fileTooLarge": "La taille maximale du fichier est de 5 Mo"
     }
   },
   "verify": {

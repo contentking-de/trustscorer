@@ -182,11 +182,24 @@
   },
   "certifications": {
     "title": "Zertifizierungen",
+    "description": "Alle deine Content-Zertifizierungen im Überblick",
     "new": "Neue Zertifizierung",
     "edit": "Zertifizierung bearbeiten",
+    "allCertifications": "Alle Zertifizierungen ({count})",
+    "createFirst": "Erste Zertifizierung erstellen",
+    "untitled": "Ohne Titel",
     "list": {
-      "empty": "Keine Zertifizierungen vorhanden",
-      "emptyDescription": "Erstelle deine erste Zertifizierung, um loszulegen."
+      "empty": "Noch keine Zertifizierungen",
+      "emptyDescription": "Erstelle deine erste Content-Zertifizierung"
+    },
+    "table": {
+      "content": "Content",
+      "domain": "Domain",
+      "status": "Status",
+      "impressions": "Impressionen",
+      "date": "Datum",
+      "actions": "Aktionen",
+      "details": "Details"
     },
     "form": {
       "url": "Artikel-URL",
@@ -219,24 +232,55 @@
   },
   "domains": {
     "title": "Domains",
+    "description": "Verwalte die Domains, für die du Zertifizierungen erstellen kannst",
     "add": "Domain hinzufügen",
+    "addDescription": "Füge eine neue Domain hinzu, die du verifizieren möchtest",
+    "addButton": "Hinzufügen",
+    "yourDomains": "Deine Domains",
+    "noDomains": "Noch keine Domains registriert",
     "verify": "Verifizieren",
+    "verifiedOn": "Verifiziert am {date}",
+    "confirmDelete": "Domain wirklich löschen? Alle zugehörigen Zertifizierungen werden ebenfalls gelöscht.",
     "status": {
       "verified": "Verifiziert",
-      "pending": "Ausstehend",
+      "pending": "Verifizierung ausstehend",
       "failed": "Fehlgeschlagen"
     },
     "verification": {
       "title": "Domain verifizieren",
-      "description": "Füge einen der folgenden Einträge hinzu, um deine Domain zu verifizieren:",
-      "dns": "DNS TXT-Eintrag",
-      "meta": "Meta-Tag"
+      "chooseMethod": "Wähle eine Methode, um {domain} zu verifizieren",
+      "dnsOption": "Option 1: DNS TXT-Record",
+      "dnsDescription": "Füge einen TXT-Record zu deinen DNS-Einstellungen hinzu:",
+      "checkDns": "DNS-Verifizierung prüfen",
+      "metaOption": "Option 2: Meta-Tag",
+      "metaDescription": "Füge diesen Meta-Tag in den <head> deiner Website ein:",
+      "checkMeta": "Meta-Tag-Verifizierung prüfen"
+    },
+    "errors": {
+      "loadFailed": "Fehler beim Laden der Domains",
+      "addFailed": "Fehler beim Hinzufügen der Domain",
+      "verifyFailed": "Fehler bei der Verifizierung",
+      "deleteFailed": "Fehler beim Löschen der Domain"
     }
   },
   "authors": {
     "title": "Autoren",
+    "description": "Verwalte die Autoren, die du bei Zertifizierungen angeben kannst",
     "add": "Autor hinzufügen",
+    "addButton": "Hinzufügen",
+    "addDescription": "Füge einen neuen Autor hinzu, den du bei Zertifizierungen angeben kannst",
     "edit": "Autor bearbeiten",
+    "editDescription": "Bearbeite die Informationen des Autors",
+    "yourAuthors": "Deine Autoren",
+    "authorAdded": "Autor hinzugefügt",
+    "authorUpdated": "Autor aktualisiert",
+    "authorDeleted": "Autor gelöscht",
+    "imageDeleted": "Profilbild gelöscht",
+    "confirmDelete": "Autor wirklich löschen?",
+    "confirmDeleteWithCerts": "Dieser Autor hat {count} Zertifizierung(en). Beim Löschen wird der Autor von diesen Zertifizierungen entfernt. Fortfahren?",
+    "confirmDeleteImage": "Profilbild wirklich löschen?",
+    "certificationCount": "{count} Zertifizierung(en)",
+    "createdOn": "Erstellt am {date}",
     "form": {
       "name": "Name",
       "namePlaceholder": "Max Mustermann",
@@ -244,11 +288,29 @@
       "emailPlaceholder": "max@example.com",
       "bio": "Biografie",
       "bioPlaceholder": "Kurze Beschreibung des Autors...",
-      "image": "Profilbild"
+      "image": "Profilbild",
+      "optional": "optional",
+      "preview": "Vorschau",
+      "selectImage": "Bild auswählen",
+      "imageHint": "JPG, PNG, WebP oder GIF. Max. 5MB",
+      "domains": "Domains",
+      "noVerifiedDomains": "Du musst zuerst mindestens eine Domain verifizieren, bevor du Autoren anlegen kannst.",
+      "uploading": "Bild wird hochgeladen..."
     },
     "list": {
-      "empty": "Keine Autoren vorhanden",
-      "emptyDescription": "Füge deinen ersten Autor hinzu."
+      "empty": "Noch keine Autoren angelegt",
+      "emptyDescription": "Füge Autoren hinzu, um sie bei Zertifizierungen anzugeben"
+    },
+    "errors": {
+      "loadFailed": "Fehler beim Laden der Autoren",
+      "addFailed": "Fehler beim Hinzufügen des Autors",
+      "updateFailed": "Fehler beim Aktualisieren des Autors",
+      "deleteFailed": "Fehler beim Löschen des Autors",
+      "updateSuccessImageFailed": "Autor aktualisiert, aber Bild-Upload fehlgeschlagen",
+      "createSuccessImageFailed": "Autor erstellt, aber Bild-Upload fehlgeschlagen",
+      "deleteImageFailed": "Fehler beim Löschen des Profilbilds",
+      "invalidFileType": "Nur JPEG, PNG, WebP und GIF Bilder sind erlaubt",
+      "fileTooLarge": "Maximale Dateigröße ist 5MB"
     }
   },
   "verify": {

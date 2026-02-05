@@ -182,11 +182,24 @@
   },
   "certifications": {
     "title": "Certificazioni",
+    "description": "Tutte le tue certificazioni di contenuto in un colpo d'occhio",
     "new": "Nuova certificazione",
     "edit": "Modifica certificazione",
+    "allCertifications": "Tutte le certificazioni ({count})",
+    "createFirst": "Crea prima certificazione",
+    "untitled": "Senza titolo",
     "list": {
-      "empty": "Nessuna certificazione trovata",
-      "emptyDescription": "Crea la tua prima certificazione per iniziare."
+      "empty": "Nessuna certificazione",
+      "emptyDescription": "Crea la tua prima certificazione di contenuto"
+    },
+    "table": {
+      "content": "Contenuto",
+      "domain": "Dominio",
+      "status": "Stato",
+      "impressions": "Impressioni",
+      "date": "Data",
+      "actions": "Azioni",
+      "details": "Dettagli"
     },
     "form": {
       "url": "URL articolo",
@@ -219,24 +232,55 @@
   },
   "domains": {
     "title": "Domini",
+    "description": "Gestisci i domini per i quali puoi creare certificazioni",
     "add": "Aggiungi dominio",
+    "addDescription": "Aggiungi un nuovo dominio che vuoi verificare",
+    "addButton": "Aggiungi",
+    "yourDomains": "I tuoi domini",
+    "noDomains": "Nessun dominio registrato",
     "verify": "Verifica",
+    "verifiedOn": "Verificato il {date}",
+    "confirmDelete": "Eliminare davvero il dominio? Tutte le certificazioni associate verranno eliminate.",
     "status": {
       "verified": "Verificato",
-      "pending": "In attesa",
+      "pending": "Verifica in attesa",
       "failed": "Fallito"
     },
     "verification": {
       "title": "Verifica dominio",
-      "description": "Aggiungi uno dei seguenti record per verificare il tuo dominio:",
-      "dns": "Record DNS TXT",
-      "meta": "Meta Tag"
+      "chooseMethod": "Scegli un metodo per verificare {domain}",
+      "dnsOption": "Opzione 1: Record DNS TXT",
+      "dnsDescription": "Aggiungi un record TXT alle tue impostazioni DNS:",
+      "checkDns": "Verifica DNS",
+      "metaOption": "Opzione 2: Tag Meta",
+      "metaDescription": "Aggiungi questo tag meta nel <head> del tuo sito web:",
+      "checkMeta": "Verifica tag Meta"
+    },
+    "errors": {
+      "loadFailed": "Errore nel caricamento dei domini",
+      "addFailed": "Errore nell'aggiunta del dominio",
+      "verifyFailed": "Errore nella verifica",
+      "deleteFailed": "Errore nell'eliminazione del dominio"
     }
   },
   "authors": {
     "title": "Autori",
+    "description": "Gestisci gli autori che puoi assegnare alle certificazioni",
     "add": "Aggiungi autore",
+    "addButton": "Aggiungi",
+    "addDescription": "Aggiungi un nuovo autore che puoi assegnare alle certificazioni",
     "edit": "Modifica autore",
+    "editDescription": "Modifica le informazioni dell'autore",
+    "yourAuthors": "I tuoi autori",
+    "authorAdded": "Autore aggiunto",
+    "authorUpdated": "Autore aggiornato",
+    "authorDeleted": "Autore eliminato",
+    "imageDeleted": "Foto profilo eliminata",
+    "confirmDelete": "Eliminare davvero l'autore?",
+    "confirmDeleteWithCerts": "Questo autore ha {count} certificazione/i. L'eliminazione rimuoverà l'autore da queste certificazioni. Continuare?",
+    "confirmDeleteImage": "Eliminare davvero la foto profilo?",
+    "certificationCount": "{count} certificazione/i",
+    "createdOn": "Creato il {date}",
     "form": {
       "name": "Nome",
       "namePlaceholder": "Mario Rossi",
@@ -244,11 +288,29 @@
       "emailPlaceholder": "mario@example.com",
       "bio": "Biografia",
       "bioPlaceholder": "Breve descrizione dell'autore...",
-      "image": "Foto profilo"
+      "image": "Foto profilo",
+      "optional": "opzionale",
+      "preview": "Anteprima",
+      "selectImage": "Seleziona immagine",
+      "imageHint": "JPG, PNG, WebP o GIF. Max 5MB",
+      "domains": "Domini",
+      "noVerifiedDomains": "Devi prima verificare almeno un dominio prima di poter aggiungere autori.",
+      "uploading": "Caricamento immagine..."
     },
     "list": {
-      "empty": "Nessun autore trovato",
-      "emptyDescription": "Aggiungi il tuo primo autore."
+      "empty": "Nessun autore",
+      "emptyDescription": "Aggiungi autori per assegnarli alle certificazioni"
+    },
+    "errors": {
+      "loadFailed": "Errore nel caricamento degli autori",
+      "addFailed": "Errore nell'aggiunta dell'autore",
+      "updateFailed": "Errore nell'aggiornamento dell'autore",
+      "deleteFailed": "Errore nell'eliminazione dell'autore",
+      "updateSuccessImageFailed": "Autore aggiornato, ma caricamento immagine fallito",
+      "createSuccessImageFailed": "Autore creato, ma caricamento immagine fallito",
+      "deleteImageFailed": "Errore nell'eliminazione della foto profilo",
+      "invalidFileType": "Sono ammessi solo file JPEG, PNG, WebP e GIF",
+      "fileTooLarge": "La dimensione massima del file è 5MB"
     }
   },
   "verify": {

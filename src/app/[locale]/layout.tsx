@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     "KI-Content",
     "Publisher",
   ],
+  icons: {
+    icon: "/logo-certiread.png",
+    shortcut: "/logo-certiread.png",
+    apple: "/logo-certiread.png",
+  },
 };
 
 export function generateStaticParams() {

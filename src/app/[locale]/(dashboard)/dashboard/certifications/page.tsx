@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -23,6 +24,9 @@ interface Certification {
 }
 
 export default function CertificationsPage() {
+  const t = useTranslations("certifications");
+  const locale = useLocale();
+  
   const [certifications, setCertifications] = useState<Certification[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -58,9 +62,9 @@ export default function CertificationsPage() {
     <div className="max-w-5xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Zertifizierungen</h1>
+          <h1 className="text-2xl font-bold text-gray-900">{t("title")}</h1>
           <p className="text-gray-500 mt-1">
-            Alle deine Content-Zertifizierungen im Überblick
+            {t("description")}
           </p>
         </div>
         <Link href="/dashboard/certifications/new">
@@ -68,14 +72,14 @@ export default function CertificationsPage() {
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
-            Neue Zertifizierung
+            {t("new")}
           </Button>
         </Link>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>Alle Zertifizierungen ({certifications.length})</CardTitle>
+          <CardTitle>{t("allCertifications", { count: certifications.length })}</CardTitle>
         </CardHeader>
         <CardContent>
           {certifications.length === 0 ? (
@@ -83,10 +87,10 @@ export default function CertificationsPage() {
               <svg className="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
-              <p className="text-lg font-medium mb-2">Noch keine Zertifizierungen</p>
-              <p className="mb-6">Erstelle deine erste Content-Zertifizierung</p>
+              <p className="text-lg font-medium mb-2">{t("list.empty")}</p>
+              <p className="mb-6">{t("list.emptyDescription")}</p>
               <Link href="/dashboard/certifications/new">
-                <Button>Erste Zertifizierung erstellen</Button>
+                <Button>{t("createFirst")}</Button>
               </Link>
             </div>
           ) : (
@@ -95,22 +99,22 @@ export default function CertificationsPage() {
                 <thead>
                   <tr className="border-b border-gray-200">
                     <th className="text-left py-3 px-4 font-medium text-gray-500 text-sm">
-                      Content
+                      {t("table.content")}
                     </th>
                     <th className="text-left py-3 px-4 font-medium text-gray-500 text-sm">
-                      Domain
+                      {t("table.domain")}
                     </th>
                     <th className="text-left py-3 px-4 font-medium text-gray-500 text-sm">
-                      Status
+                      {t("table.status")}
                     </th>
                     <th className="text-left py-3 px-4 font-medium text-gray-500 text-sm">
-                      Impressionen
+                      {t("table.impressions")}
                     </th>
                     <th className="text-left py-3 px-4 font-medium text-gray-500 text-sm">
-                      Datum
+                      {t("table.date")}
                     </th>
                     <th className="text-right py-3 px-4 font-medium text-gray-500 text-sm">
-                      Aktionen
+                      {t("table.actions")}
                     </th>
                   </tr>
                 </thead>
@@ -120,7 +124,7 @@ export default function CertificationsPage() {
                       <td className="py-3 px-4">
                         <div className="max-w-xs">
                           <p className="font-medium text-gray-900 truncate">
-                            {cert.contentTitle || "Ohne Titel"}
+                            {cert.contentTitle || t("untitled")}
                           </p>
                           <p className="text-sm text-gray-500 truncate">
                             {cert.contentUrl}
@@ -138,19 +142,19 @@ export default function CertificationsPage() {
                               : "bg-red-100 text-red-700"
                           }`}
                         >
-                          {cert.status === "ACTIVE" ? "Aktiv" : "Widerrufen"}
+                          {cert.status === "ACTIVE" ? t("status.active") : t("status.revoked")}
                         </span>
                       </td>
                       <td className="py-3 px-4 text-gray-600">
-                        {cert.badgeImpressions.toLocaleString("de-DE")}
+                        {cert.badgeImpressions.toLocaleString(locale)}
                       </td>
                       <td className="py-3 px-4 text-gray-600 text-sm">
-                        {new Date(cert.createdAt).toLocaleDateString("de-DE")}
+                        {new Date(cert.createdAt).toLocaleDateString(locale)}
                       </td>
                       <td className="py-3 px-4 text-right">
                         <Link href={`/dashboard/certifications/${cert.id}`}>
                           <Button variant="ghost" size="sm">
-                            Details
+                            {t("table.details")}
                           </Button>
                         </Link>
                       </td>

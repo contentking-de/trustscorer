@@ -182,11 +182,24 @@
   },
   "certifications": {
     "title": "Certifications",
+    "description": "All your content certifications at a glance",
     "new": "New Certification",
     "edit": "Edit Certification",
+    "allCertifications": "All Certifications ({count})",
+    "createFirst": "Create First Certification",
+    "untitled": "Untitled",
     "list": {
-      "empty": "No certifications found",
-      "emptyDescription": "Create your first certification to get started."
+      "empty": "No certifications yet",
+      "emptyDescription": "Create your first content certification"
+    },
+    "table": {
+      "content": "Content",
+      "domain": "Domain",
+      "status": "Status",
+      "impressions": "Impressions",
+      "date": "Date",
+      "actions": "Actions",
+      "details": "Details"
     },
     "form": {
       "url": "Article URL",
@@ -219,24 +232,55 @@
   },
   "domains": {
     "title": "Domains",
+    "description": "Manage the domains for which you can create certifications",
     "add": "Add Domain",
+    "addDescription": "Add a new domain that you want to verify",
+    "addButton": "Add",
+    "yourDomains": "Your Domains",
+    "noDomains": "No domains registered yet",
     "verify": "Verify",
+    "verifiedOn": "Verified on {date}",
+    "confirmDelete": "Really delete domain? All associated certifications will also be deleted.",
     "status": {
       "verified": "Verified",
-      "pending": "Pending",
+      "pending": "Verification pending",
       "failed": "Failed"
     },
     "verification": {
       "title": "Verify Domain",
-      "description": "Add one of the following records to verify your domain:",
-      "dns": "DNS TXT Record",
-      "meta": "Meta Tag"
+      "chooseMethod": "Choose a method to verify {domain}",
+      "dnsOption": "Option 1: DNS TXT Record",
+      "dnsDescription": "Add a TXT record to your DNS settings:",
+      "checkDns": "Check DNS Verification",
+      "metaOption": "Option 2: Meta Tag",
+      "metaDescription": "Add this meta tag to the <head> of your website:",
+      "checkMeta": "Check Meta Tag Verification"
+    },
+    "errors": {
+      "loadFailed": "Failed to load domains",
+      "addFailed": "Failed to add domain",
+      "verifyFailed": "Verification failed",
+      "deleteFailed": "Failed to delete domain"
     }
   },
   "authors": {
     "title": "Authors",
+    "description": "Manage the authors you can assign to certifications",
     "add": "Add Author",
+    "addButton": "Add",
+    "addDescription": "Add a new author that you can assign to certifications",
     "edit": "Edit Author",
+    "editDescription": "Edit the author's information",
+    "yourAuthors": "Your Authors",
+    "authorAdded": "Author added",
+    "authorUpdated": "Author updated",
+    "authorDeleted": "Author deleted",
+    "imageDeleted": "Profile picture deleted",
+    "confirmDelete": "Really delete author?",
+    "confirmDeleteWithCerts": "This author has {count} certification(s). Deleting will remove the author from these certifications. Continue?",
+    "confirmDeleteImage": "Really delete profile picture?",
+    "certificationCount": "{count} certification(s)",
+    "createdOn": "Created on {date}",
     "form": {
       "name": "Name",
       "namePlaceholder": "John Doe",
@@ -244,11 +288,29 @@
       "emailPlaceholder": "john@example.com",
       "bio": "Biography",
       "bioPlaceholder": "Short description of the author...",
-      "image": "Profile Picture"
+      "image": "Profile Picture",
+      "optional": "optional",
+      "preview": "Preview",
+      "selectImage": "Select Image",
+      "imageHint": "JPG, PNG, WebP or GIF. Max 5MB",
+      "domains": "Domains",
+      "noVerifiedDomains": "You must first verify at least one domain before you can add authors.",
+      "uploading": "Uploading image..."
     },
     "list": {
-      "empty": "No authors found",
-      "emptyDescription": "Add your first author."
+      "empty": "No authors yet",
+      "emptyDescription": "Add authors to assign them to certifications"
+    },
+    "errors": {
+      "loadFailed": "Failed to load authors",
+      "addFailed": "Failed to add author",
+      "updateFailed": "Failed to update author",
+      "deleteFailed": "Failed to delete author",
+      "updateSuccessImageFailed": "Author updated, but image upload failed",
+      "createSuccessImageFailed": "Author created, but image upload failed",
+      "deleteImageFailed": "Failed to delete profile picture",
+      "invalidFileType": "Only JPEG, PNG, WebP and GIF images are allowed",
+      "fileTooLarge": "Maximum file size is 5MB"
     }
   },
   "verify": {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -26,6 +27,10 @@ interface Author {
 }
 
 export default function AuthorsPage() {
+  const t = useTranslations("authors");
+  const tCommon = useTranslations("common");
+  const locale = useLocale();
+  
   const [authors, setAuthors] = useState<Author[]>([]);
   const [verifiedDomains, setVerifiedDomains] = useState<Domain[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -57,7 +62,7 @@ export default function AuthorsPage() {
       const data = await res.json();
       setAuthors(data.authors || []);
     } catch {
-      setError("Fehler beim Laden der Autoren");
+      setError(t("errors.loadFailed"));
     } finally {
       setIsLoading(false);
     }
@@ -67,13 +72,12 @@ export default function AuthorsPage() {
     try {
       const res = await fetch("/api/domains");
       const data = await res.json();
-      // Filter only verified domains
       const verified = (data.domains || []).filter(
         (d: { verificationStatus: string }) => d.verificationStatus === "VERIFIED"
       );
       setVerifiedDomains(verified);
     } catch {
-      // Silently fail, domains will just be empty
+      // Silently fail
     }
   }
 
@@ -102,16 +106,14 @@ export default function AuthorsPage() {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate file type
     const allowedTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
     if (!allowedTypes.includes(file.type)) {
-      setError("Nur JPEG, PNG, WebP und GIF Bilder sind erlaubt");
+      setError(t("errors.invalidFileType"));
       return;
     }
 
-    // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
-      setError("Maximale Dateigröße ist 5MB");
+      setError(t("errors.fileTooLarge"));
       return;
     }
 
@@ -150,7 +152,7 @@ export default function AuthorsPage() {
   }
 
   async function handleDeleteImage(authorId: string) {
-    if (!confirm("Profilbild wirklich löschen?")) return;
+    if (!confirm(t("confirmDeleteImage"))) return;
 
     try {
       const res = await fetch(`/api/authors/upload?authorId=${authorId}`, {
@@ -163,11 +165,11 @@ export default function AuthorsPage() {
         return;
       }
 
-      setSuccess("Profilbild gelöscht");
+      setSuccess(t("imageDeleted"));
       setPreviewImage(null);
       fetchAuthors();
     } catch {
-      setError("Fehler beim Löschen des Profilbilds");
+      setError(t("errors.deleteImageFailed"));
     }
   }
 
@@ -188,7 +190,6 @@ export default function AuthorsPage() {
     if (editingAuthor) {
       setIsSaving(true);
       try {
-        // First update the author data
         const res = await fetch("/api/authors", {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -202,30 +203,28 @@ export default function AuthorsPage() {
           return;
         }
 
-        // Then upload image if selected
         if (selectedFile) {
           try {
             await uploadImage(editingAuthor.id);
           } catch {
-            setError("Autor aktualisiert, aber Bild-Upload fehlgeschlagen");
+            setError(t("errors.updateSuccessImageFailed"));
             resetForm();
             fetchAuthors();
             return;
           }
         }
 
-        setSuccess("Autor aktualisiert");
+        setSuccess(t("authorUpdated"));
         resetForm();
         fetchAuthors();
       } catch {
-        setError("Fehler beim Aktualisieren des Autors");
+        setError(t("errors.updateFailed"));
       } finally {
         setIsSaving(false);
       }
     } else {
       setIsAdding(true);
       try {
-        // First create the author
         const res = await fetch("/api/authors", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -239,23 +238,22 @@ export default function AuthorsPage() {
           return;
         }
 
-        // Then upload image if selected
         if (selectedFile && data.author?.id) {
           try {
             await uploadImage(data.author.id);
           } catch {
-            setError("Autor erstellt, aber Bild-Upload fehlgeschlagen");
+            setError(t("errors.createSuccessImageFailed"));
             resetForm();
             fetchAuthors();
             return;
           }
         }
 
-        setSuccess("Autor hinzugefügt");
+        setSuccess(t("authorAdded"));
         resetForm();
         fetchAuthors();
       } catch {
-        setError("Fehler beim Hinzufügen des Autors");
+        setError(t("errors.addFailed"));
       } finally {
         setIsAdding(false);
       }
@@ -264,8 +262,8 @@ export default function AuthorsPage() {
 
   async function handleDelete(authorId: string, certCount: number) {
     const message = certCount > 0
-      ? `Dieser Autor hat ${certCount} Zertifizierung(en). Beim Löschen wird der Autor von diesen Zertifizierungen entfernt. Fortfahren?`
-      : "Autor wirklich löschen?";
+      ? t("confirmDeleteWithCerts", { count: certCount })
+      : t("confirmDelete");
 
     if (!confirm(message)) {
       return;
@@ -282,10 +280,10 @@ export default function AuthorsPage() {
         return;
       }
 
-      setSuccess("Autor gelöscht");
+      setSuccess(t("authorDeleted"));
       fetchAuthors();
     } catch {
-      setError("Fehler beim Löschen des Autors");
+      setError(t("errors.deleteFailed"));
     }
   }
 
@@ -304,9 +302,9 @@ export default function AuthorsPage() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Autoren</h1>
+        <h1 className="text-2xl font-bold text-gray-900">{t("title")}</h1>
         <p className="text-gray-500 mt-1">
-          Verwalte die Autoren, die du bei Zertifizierungen angeben kannst
+          {t("description")}
         </p>
       </div>
 
@@ -326,11 +324,9 @@ export default function AuthorsPage() {
       {showForm ? (
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>{editingAuthor ? "Autor bearbeiten" : "Neuen Autor hinzufügen"}</CardTitle>
+            <CardTitle>{editingAuthor ? t("edit") : t("add")}</CardTitle>
             <CardDescription>
-              {editingAuthor
-                ? "Bearbeite die Informationen des Autors"
-                : "Füge einen neuen Autor hinzu, den du bei Zertifizierungen angeben kannst"}
+              {editingAuthor ? t("editDescription") : t("addDescription")}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -338,7 +334,7 @@ export default function AuthorsPage() {
               {/* Profile Image Upload */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Profilbild (optional)
+                  {t("form.image")} ({t("form.optional")})
                 </label>
                 <div className="flex items-center gap-4">
                   <div className="relative">
@@ -346,7 +342,7 @@ export default function AuthorsPage() {
                       <div className="relative">
                         <img
                           src={previewImage}
-                          alt="Vorschau"
+                          alt={t("form.preview")}
                           className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
                         />
                         <button
@@ -380,7 +376,7 @@ export default function AuthorsPage() {
                         <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                        Bild auswählen
+                        {t("form.selectImage")}
                       </span>
                       <input
                         type="file"
@@ -389,18 +385,18 @@ export default function AuthorsPage() {
                         className="hidden"
                       />
                     </label>
-                    <p className="text-xs text-gray-500 mt-1">JPG, PNG, WebP oder GIF. Max. 5MB</p>
+                    <p className="text-xs text-gray-500 mt-1">{t("form.imageHint")}</p>
                   </div>
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Name *
+                  {t("form.name")} *
                 </label>
                 <Input
                   type="text"
-                  placeholder="Max Mustermann"
+                  placeholder={t("form.namePlaceholder")}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
@@ -408,34 +404,34 @@ export default function AuthorsPage() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  E-Mail (optional)
+                  {t("form.email")} ({t("form.optional")})
                 </label>
                 <Input
                   type="email"
-                  placeholder="autor@beispiel.de"
+                  placeholder={t("form.emailPlaceholder")}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Bio (optional)
+                  {t("form.bio")} ({t("form.optional")})
                 </label>
                 <textarea
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   rows={3}
-                  placeholder="Kurze Beschreibung des Autors..."
+                  placeholder={t("form.bioPlaceholder")}
                   value={formData.bio}
                   onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
                 />
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Domains *
+                  {t("form.domains")} *
                 </label>
                 {verifiedDomains.length === 0 ? (
                   <p className="text-sm text-amber-600 bg-amber-50 p-3 rounded-lg">
-                    Du musst zuerst mindestens eine Domain verifizieren, bevor du Autoren anlegen kannst.
+                    {t("form.noVerifiedDomains")}
                   </p>
                 ) : (
                   <div className="space-y-2">
@@ -466,10 +462,10 @@ export default function AuthorsPage() {
                   isLoading={isAdding || isSaving || isUploading}
                   disabled={formData.domainIds.length === 0 || verifiedDomains.length === 0}
                 >
-                  {isUploading ? "Bild wird hochgeladen..." : editingAuthor ? "Speichern" : "Hinzufügen"}
+                  {isUploading ? t("form.uploading") : editingAuthor ? tCommon("save") : t("addButton")}
                 </Button>
                 <Button type="button" variant="outline" onClick={resetForm} disabled={isAdding || isSaving || isUploading}>
-                  Abbrechen
+                  {tCommon("cancel")}
                 </Button>
               </div>
             </form>
@@ -482,7 +478,7 @@ export default function AuthorsPage() {
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
-              Autor hinzufügen
+              {t("add")}
             </Button>
           </CardContent>
         </Card>
@@ -491,7 +487,7 @@ export default function AuthorsPage() {
       {/* Authors List */}
       <Card>
         <CardHeader>
-          <CardTitle>Deine Autoren</CardTitle>
+          <CardTitle>{t("yourAuthors")}</CardTitle>
         </CardHeader>
         <CardContent>
           {authors.length === 0 ? (
@@ -499,8 +495,8 @@ export default function AuthorsPage() {
               <svg className="w-12 h-12 mx-auto text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
-              <p>Noch keine Autoren angelegt</p>
-              <p className="text-sm mt-1">Füge Autoren hinzu, um sie bei Zertifizierungen anzugeben</p>
+              <p>{t("list.empty")}</p>
+              <p className="text-sm mt-1">{t("list.emptyDescription")}</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -545,8 +541,8 @@ export default function AuthorsPage() {
                           </div>
                         )}
                         <div className="flex items-center gap-4 mt-2 text-xs text-gray-400">
-                          <span>{author._count.certifications} Zertifizierung(en)</span>
-                          <span>Erstellt am {new Date(author.createdAt).toLocaleDateString("de-DE")}</span>
+                          <span>{t("certificationCount", { count: author._count.certifications })}</span>
+                          <span>{t("createdOn", { date: new Date(author.createdAt).toLocaleDateString(locale) })}</span>
                         </div>
                       </div>
                     </div>
