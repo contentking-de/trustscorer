@@ -73,7 +73,7 @@ export async function POST(request: Request) {
     }
 
     // Check if domain belongs to publisher and is verified
-    const domain = publisher.domains.find((d) => d.id === validatedData.domainId);
+    const domain = publisher.domains.find((d: { id: string }) => d.id === validatedData.domainId);
     if (!domain) {
       return NextResponse.json({ error: "Domain nicht gefunden" }, { status: 404 });
     }
