@@ -21,7 +21,7 @@ export default function DomainsPage() {
   const [isAdding, setIsAdding] = useState(false);
   const [newDomain, setNewDomain] = useState("");
   const [error, setError] = useState("");
-  const [verifyingId, setVerifyingId] = useState<string | null>(null);
+  const [verifying, setVerifying] = useState<{ domainId: string; method: "DNS" | "META" } | null>(null);
   const [selectedDomain, setSelectedDomain] = useState<Domain | null>(null);
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export default function DomainsPage() {
   }
 
   async function handleVerify(domainId: string, method: "DNS" | "META") {
-    setVerifyingId(domainId);
+    setVerifying({ domainId, method });
     setError("");
 
     try {
@@ -95,7 +95,7 @@ export default function DomainsPage() {
     } catch {
       setError("Fehler bei der Verifizierung");
     } finally {
-      setVerifyingId(null);
+      setVerifying(null);
     }
   }
 
@@ -272,7 +272,8 @@ export default function DomainsPage() {
                 <Button
                   className="mt-4 w-full"
                   onClick={() => handleVerify(selectedDomain.id, "DNS")}
-                  isLoading={verifyingId === selectedDomain.id}
+                  isLoading={verifying?.domainId === selectedDomain.id && verifying?.method === "DNS"}
+                  disabled={verifying !== null}
                 >
                   DNS-Verifizierung prüfen
                 </Button>
@@ -291,7 +292,8 @@ export default function DomainsPage() {
                   className="mt-4 w-full"
                   variant="outline"
                   onClick={() => handleVerify(selectedDomain.id, "META")}
-                  isLoading={verifyingId === selectedDomain.id}
+                  isLoading={verifying?.domainId === selectedDomain.id && verifying?.method === "META"}
+                  disabled={verifying !== null}
                 >
                   Meta-Tag-Verifizierung prüfen
                 </Button>
@@ -301,6 +303,7 @@ export default function DomainsPage() {
                 variant="ghost"
                 className="w-full"
                 onClick={() => setSelectedDomain(null)}
+                disabled={verifying !== null}
               >
                 Abbrechen
               </Button>
