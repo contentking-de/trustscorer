@@ -191,7 +191,7 @@ export default function EditCertificationPage({
           Bearbeite die Details deiner Zertifizierung
         </p>
         {certification && (
-          <p className="text-sm text-emerald-600 mt-2">
+          <p className="text-sm text-blue-600 mt-2">
             Domain: {certification.domain.domain}
           </p>
         )}
@@ -247,7 +247,7 @@ export default function EditCertificationPage({
                   }))
                 }
                 rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -270,7 +270,7 @@ export default function EditCertificationPage({
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, status: e.target.value as "ACTIVE" | "REVOKED" | "EXPIRED" }))
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 {statusOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -304,7 +304,7 @@ export default function EditCertificationPage({
                   onChange={() =>
                     handleCheckboxChange("creationProcess", option.value)
                   }
-                  className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
                 <span className="text-gray-700">{option.label}</span>
               </label>
@@ -344,7 +344,7 @@ export default function EditCertificationPage({
                   type="checkbox"
                   checked={formData.sourceTypes.includes(option.value)}
                   onChange={() => handleCheckboxChange("sourceTypes", option.value)}
-                  className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
                 <span className="text-gray-700">{option.label}</span>
               </label>
@@ -369,7 +369,7 @@ export default function EditCertificationPage({
                   type="checkbox"
                   checked={formData.factCheckType.includes(option.value)}
                   onChange={() => handleCheckboxChange("factCheckType", option.value)}
-                  className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
                 <span className="text-gray-700">{option.label}</span>
               </label>
@@ -395,7 +395,7 @@ export default function EditCertificationPage({
                 }))
               }
               rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </CardContent>
         </Card>

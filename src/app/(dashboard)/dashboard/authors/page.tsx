@@ -317,7 +317,7 @@ export default function AuthorsPage() {
       )}
 
       {success && (
-        <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-700">
+        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg text-blue-700">
           {success}
         </div>
       )}
@@ -422,7 +422,7 @@ export default function AuthorsPage() {
                   Bio (optional)
                 </label>
                 <textarea
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   rows={3}
                   placeholder="Kurze Beschreibung des Autors..."
                   value={formData.bio}
@@ -444,7 +444,7 @@ export default function AuthorsPage() {
                         key={domain.id}
                         className={`flex items-center gap-3 p-3 border rounded-lg cursor-pointer transition-colors ${
                           formData.domainIds.includes(domain.id)
-                            ? "border-emerald-500 bg-emerald-50"
+                            ? "border-blue-500 bg-blue-50"
                             : "border-gray-200 hover:border-gray-300"
                         }`}
                       >
@@ -452,7 +452,7 @@ export default function AuthorsPage() {
                           type="checkbox"
                           checked={formData.domainIds.includes(domain.id)}
                           onChange={() => toggleDomain(domain.id)}
-                          className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                          className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                         />
                         <span className="text-gray-900">{domain.domain}</span>
                       </label>
@@ -518,8 +518,8 @@ export default function AuthorsPage() {
                           className="w-10 h-10 rounded-full object-cover flex-shrink-0"
                         />
                       ) : (
-                        <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                          <span className="text-emerald-700 font-medium">
+                        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0">
+                          <span className="text-blue-700 font-medium">
                             {author.name.charAt(0).toUpperCase()}
                           </span>
                         </div>

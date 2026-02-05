@@ -179,7 +179,7 @@ export default function NewCertificationPage() {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, domainId: e.target.value }))
                 }
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 {domains.map((domain) => (
                   <option key={domain.id} value={domain.id}>
@@ -224,7 +224,7 @@ export default function NewCertificationPage() {
                   }))
                 }
                 rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -259,7 +259,7 @@ export default function NewCertificationPage() {
                   onChange={() =>
                     handleCheckboxChange("creationProcess", option.value)
                   }
-                  className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
                 <span className="text-gray-700">{option.label}</span>
               </label>
@@ -299,7 +299,7 @@ export default function NewCertificationPage() {
                   type="checkbox"
                   checked={formData.sourceTypes.includes(option.value)}
                   onChange={() => handleCheckboxChange("sourceTypes", option.value)}
-                  className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
                 <span className="text-gray-700">{option.label}</span>
               </label>
@@ -324,7 +324,7 @@ export default function NewCertificationPage() {
                   type="checkbox"
                   checked={formData.factCheckType.includes(option.value)}
                   onChange={() => handleCheckboxChange("factCheckType", option.value)}
-                  className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
                 <span className="text-gray-700">{option.label}</span>
               </label>
@@ -350,7 +350,7 @@ export default function NewCertificationPage() {
                 }))
               }
               rows={4}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </CardContent>
         </Card>

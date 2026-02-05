@@ -47,7 +47,7 @@ function LoginForm() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
-        <div className="mx-auto w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-4">
+        <div className="mx-auto w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
           <svg
             className="w-6 h-6 text-white"
             fill="none"
@@ -104,7 +104,7 @@ function LoginForm() {
           Noch kein Konto?{" "}
           <Link
             href="/register"
-            className="text-emerald-600 hover:text-emerald-700 font-medium"
+            className="text-blue-600 hover:text-blue-700 font-medium"
           >
             Jetzt registrieren
           </Link>
@@ -116,7 +116,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-100 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-sky-100 px-4">
       <Suspense fallback={<div className="w-full max-w-md h-96 bg-white rounded-lg animate-pulse" />}>
         <LoginForm />
       </Suspense>

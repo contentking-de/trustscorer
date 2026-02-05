@@ -46,10 +46,10 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-100 px-4 py-8">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-sky-100 px-4 py-8">
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <div className="mx-auto w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-4">
+          <div className="mx-auto w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
             <svg
               className="w-6 h-6 text-white"
               fill="none"
@@ -124,11 +124,11 @@ export default function RegisterPage() {
 
           <p className="mt-4 text-xs text-gray-500 text-center">
             Mit der Registrierung stimmst du unseren{" "}
-            <Link href="/terms" className="text-emerald-600 hover:underline">
+            <Link href="/terms" className="text-blue-600 hover:underline">
               Nutzungsbedingungen
             </Link>{" "}
             und{" "}
-            <Link href="/privacy" className="text-emerald-600 hover:underline">
+            <Link href="/privacy" className="text-blue-600 hover:underline">
               Datenschutzrichtlinien
             </Link>{" "}
             zu.
@@ -138,7 +138,7 @@ export default function RegisterPage() {
             Bereits ein Konto?{" "}
             <Link
               href="/login"
-              className="text-emerald-600 hover:text-emerald-700 font-medium"
+              className="text-blue-600 hover:text-blue-700 font-medium"
             >
               Jetzt anmelden
             </Link>

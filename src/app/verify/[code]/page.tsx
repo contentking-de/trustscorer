@@ -80,12 +80,12 @@ export default async function VerifyPage({
   const isRevoked = certification.status !== "ACTIVE";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Header */}
       <header className="border-b border-gray-100 bg-white">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
               <svg
                 className="w-5 h-5 text-white"
                 fill="none"
@@ -126,7 +126,7 @@ export default async function VerifyPage({
         {/* Certificate Card */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
           {/* Status Banner */}
-          <div className={`px-6 py-4 ${isRevoked ? "bg-red-600" : "bg-emerald-600"}`}>
+          <div className={`px-6 py-4 ${isRevoked ? "bg-red-600" : "bg-blue-600"}`}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
@@ -165,7 +165,7 @@ export default async function VerifyPage({
               href={certification.contentUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-emerald-600 hover:text-emerald-700 flex items-center gap-1"
+              className="text-blue-600 hover:text-blue-700 flex items-center gap-1"
             >
               {certification.contentUrl}
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -193,7 +193,7 @@ export default async function VerifyPage({
                   {certification.creationProcess.map((process: string) => (
                     <span
                       key={process}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-100 text-emerald-700 rounded-full text-sm"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm"
                     >
                       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -311,7 +311,7 @@ export default async function VerifyPage({
         <div className="mt-8 text-center text-sm text-gray-500">
           <p>
             Dieses Zertifikat wurde über{" "}
-            <Link href="/" className="text-emerald-600 hover:text-emerald-700">
+            <Link href="/" className="text-blue-600 hover:text-blue-700">
               Certiread
             </Link>{" "}
             ausgestellt.
