@@ -100,7 +100,7 @@ export default async function CertificationDetailPage({
                   Erstellungsprozess
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {certification.creationProcess.map((process) => (
+                  {certification.creationProcess.map((process: string) => (
                     <span
                       key={process}
                       className="px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-sm"
@@ -123,7 +123,7 @@ export default async function CertificationDetailPage({
                     Quellen & Recherche
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {certification.sourceTypes.map((source) => (
+                    {certification.sourceTypes.map((source: string) => (
                       <span
                         key={source}
                         className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm"
@@ -142,7 +142,7 @@ export default async function CertificationDetailPage({
                     Faktencheck
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {certification.factCheckType.map((check) => (
+                    {certification.factCheckType.map((check: string) => (
                       <span
                         key={check}
                         className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
