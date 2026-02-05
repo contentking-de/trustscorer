@@ -45,14 +45,14 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Domain nicht gefunden" }, { status: 404 });
     }
 
-    const expectedToken = `trustscorer-verify=${domain.verificationToken}`;
+    const dnsToken = `trustscorer-verify=${domain.verificationToken}`;
     let verified = false;
 
     if (method === "DNS") {
       try {
         const records = await resolveTxt(domain.domain);
         const flatRecords = records.flat();
-        verified = flatRecords.some((record) => record.includes(expectedToken));
+        verified = flatRecords.some((record) => record.includes(dnsToken));
       } catch {
         // DNS lookup failed, domain might not exist or no TXT records
         verified = false;
@@ -99,12 +99,20 @@ export async function POST(request: Request) {
           const html = await response.text();
           console.log(`Checking for token in HTML from ${url}, HTML length: ${html.length}`);
           
-          if (html.includes(expectedToken)) {
+          // Check for meta tag format: <meta name="trustscorer-verify" content="TOKEN">
+          // The token can appear in different attribute orders and with single or double quotes
+          const metaTagPattern = new RegExp(
+            `<meta[^>]*name=["']trustscorer-verify["'][^>]*content=["']${domain.verificationToken}["'][^>]*>|` +
+            `<meta[^>]*content=["']${domain.verificationToken}["'][^>]*name=["']trustscorer-verify["'][^>]*>`,
+            'i'
+          );
+          
+          if (metaTagPattern.test(html)) {
             verified = true;
             console.log(`Domain verified via ${url}`);
             break;
           } else {
-            console.log(`Token not found in ${url}. Expected: ${expectedToken}`);
+            console.log(`Meta tag not found in ${url}. Looking for token: ${domain.verificationToken}`);
           }
         } catch (error) {
           console.log(`Failed to fetch ${url}:`, error instanceof Error ? error.message : error);
@@ -139,7 +147,7 @@ export async function POST(request: Request) {
 
       const methodHint = method === "META" 
         ? `Stelle sicher, dass das Meta-Tag <meta name="trustscorer-verify" content="${domain.verificationToken}"> im <head> Bereich deiner Seite ${domain.domain} vorhanden ist.`
-        : `Stelle sicher, dass der TXT-Record "${expectedToken}" für ${domain.domain} korrekt eingerichtet ist.`;
+        : `Stelle sicher, dass der TXT-Record "${dnsToken}" für ${domain.domain} korrekt eingerichtet ist.`;
 
       return NextResponse.json({
         message: `Verifizierung fehlgeschlagen. ${methodHint}`,
