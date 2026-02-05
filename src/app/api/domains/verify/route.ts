@@ -73,50 +73,57 @@ export async function POST(request: Request) {
         "Accept-Language": "de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7",
       };
 
-      // Setup proxy agent if PROXY_URL is configured (e.g., IPRoyal Web Unblocker)
+      // Regex to check for meta tag format: <meta name="trustscorer-verify" content="TOKEN">
+      const metaTagPattern = new RegExp(
+        `<meta[^>]*name=["']trustscorer-verify["'][^>]*content=["']${domain.verificationToken}["'][^>]*>|` +
+        `<meta[^>]*content=["']${domain.verificationToken}["'][^>]*name=["']trustscorer-verify["'][^>]*>`,
+        'i'
+      );
+
+      // Try without proxy first, then with proxy as fallback
       const proxyUrl = process.env.PROXY_URL;
-      const dispatcher = proxyUrl ? new ProxyAgent(proxyUrl) : undefined;
+      const proxyAgent = proxyUrl ? new ProxyAgent(proxyUrl) : null;
       
-      if (proxyUrl) {
-        console.log("Using proxy for domain verification");
+      // First try without proxy (undefined), then with proxy if configured
+      const attempts: Array<{ dispatcher: ProxyAgent | undefined; label: string }> = [
+        { dispatcher: undefined, label: "without proxy" },
+      ];
+      if (proxyAgent) {
+        attempts.push({ dispatcher: proxyAgent, label: "with proxy" });
       }
 
-      for (const url of urlsToTry) {
-        try {
-          console.log(`Trying to verify domain at: ${url}`);
-          
-          const response = await undiciFetch(url, {
-            headers,
-            redirect: "follow",
-            dispatcher,
-          });
-          
-          if (!response.ok) {
-            console.log(`URL ${url} returned status: ${response.status}`);
-            continue;
-          }
+      outerLoop: for (const attempt of attempts) {
+        console.log(`Trying ${attempt.label}...`);
 
-          const html = await response.text();
-          console.log(`Checking for token in HTML from ${url}, HTML length: ${html.length}`);
-          
-          // Check for meta tag format: <meta name="trustscorer-verify" content="TOKEN">
-          // The token can appear in different attribute orders and with single or double quotes
-          const metaTagPattern = new RegExp(
-            `<meta[^>]*name=["']trustscorer-verify["'][^>]*content=["']${domain.verificationToken}["'][^>]*>|` +
-            `<meta[^>]*content=["']${domain.verificationToken}["'][^>]*name=["']trustscorer-verify["'][^>]*>`,
-            'i'
-          );
-          
-          if (metaTagPattern.test(html)) {
-            verified = true;
-            console.log(`Domain verified via ${url}`);
-            break;
-          } else {
-            console.log(`Meta tag not found in ${url}. Looking for token: ${domain.verificationToken}`);
+        for (const url of urlsToTry) {
+          try {
+            console.log(`Trying to verify domain at: ${url}`);
+            
+            const response = await undiciFetch(url, {
+              headers,
+              redirect: "follow",
+              dispatcher: attempt.dispatcher,
+            });
+            
+            if (!response.ok) {
+              console.log(`URL ${url} returned status: ${response.status}`);
+              continue;
+            }
+
+            const html = await response.text();
+            console.log(`Checking for token in HTML from ${url}, HTML length: ${html.length}`);
+            
+            if (metaTagPattern.test(html)) {
+              verified = true;
+              console.log(`Domain verified via ${url} (${attempt.label})`);
+              break outerLoop;
+            } else {
+              console.log(`Meta tag not found in ${url}. Looking for token: ${domain.verificationToken}`);
+            }
+          } catch (error) {
+            console.log(`Failed to fetch ${url}:`, error instanceof Error ? error.message : error);
+            // Continue to next URL
           }
-        } catch (error) {
-          console.log(`Failed to fetch ${url}:`, error instanceof Error ? error.message : error);
-          // Continue to next URL
         }
       }
     } else {
