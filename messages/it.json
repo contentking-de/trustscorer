@@ -335,5 +335,97 @@
     "fr": "Français",
     "es": "Español",
     "it": "Italiano"
+  },
+  "imprint": {
+    "title": "Note legali",
+    "provider": {
+      "title": "Informazioni sul fornitore",
+      "country": "Germania"
+    },
+    "contact": {
+      "title": "Contatto",
+      "phone": "Telefono",
+      "email": "Email"
+    },
+    "vat": {
+      "title": "Partita IVA",
+      "description": "Numero di identificazione IVA secondo § 27a UStG"
+    },
+    "responsible": {
+      "title": "Responsabile dei contenuti"
+    },
+    "dispute": {
+      "title": "Risoluzione delle controversie",
+      "description": "Non siamo disposti né obbligati a partecipare a procedimenti di risoluzione delle controversie davanti a un organismo di conciliazione dei consumatori."
+    },
+    "backToHome": "Torna alla homepage"
+  },
+  "privacy": {
+    "title": "Informativa sulla privacy",
+    "intro": {
+      "title": "1. Privacy in breve",
+      "description": "Le seguenti informazioni forniscono una panoramica semplice di ciò che accade ai tuoi dati personali quando visiti questo sito web. I dati personali sono tutti i dati che possono essere utilizzati per identificarti personalmente."
+    },
+    "controller": {
+      "title": "2. Titolare del trattamento",
+      "country": "Germania",
+      "email": "Email"
+    },
+    "collection": {
+      "title": "3. Raccolta dati su questo sito",
+      "description": "Raccogliamo i seguenti dati:",
+      "items": {
+        "account": "Dati dell'account (nome, indirizzo email) durante la registrazione",
+        "usage": "Dati di utilizzo (certificazioni create, domini)",
+        "technical": "Dati tecnici (indirizzo IP, tipo di browser, orari di accesso)"
+      }
+    },
+    "purpose": {
+      "title": "4. Finalità del trattamento",
+      "items": {
+        "service": "Fornitura e miglioramento dei nostri servizi",
+        "communication": "Comunicazione con te riguardo al tuo account",
+        "improvement": "Analisi per migliorare il nostro sito web",
+        "legal": "Adempimento degli obblighi legali"
+      }
+    },
+    "legal": {
+      "title": "5. Base giuridica",
+      "description": "Il trattamento si basa sull'Art. 6(1)(b) GDPR (esecuzione del contratto), Art. 6(1)(a) GDPR (consenso) e Art. 6(1)(f) GDPR (interessi legittimi)."
+    },
+    "cookies": {
+      "title": "6. Cookie",
+      "description": "Utilizziamo solo cookie tecnicamente necessari per il funzionamento del sito web. Questi cookie memorizzano le informazioni della sessione e le impostazioni della lingua."
+    },
+    "sharing": {
+      "title": "7. Condivisione dei dati",
+      "description": "I tuoi dati non vengono venduti a terzi. I dati vengono condivisi solo con fornitori di servizi che ci assistono nella fornitura dei nostri servizi, e solo nella misura necessaria."
+    },
+    "retention": {
+      "title": "8. Conservazione dei dati",
+      "description": "I tuoi dati verranno cancellati non appena non saranno più necessari per lo scopo per cui sono stati raccolti. I dati dell'account vengono rimossi quando elimini il tuo account, a meno che non si applichino periodi di conservazione legali."
+    },
+    "rights": {
+      "title": "9. I tuoi diritti",
+      "description": "Hai i seguenti diritti riguardo ai tuoi dati personali:",
+      "items": {
+        "access": "Diritto di accesso ai tuoi dati memorizzati",
+        "rectification": "Diritto di rettifica dei dati inesatti",
+        "erasure": "Diritto alla cancellazione dei tuoi dati",
+        "restriction": "Diritto alla limitazione del trattamento",
+        "portability": "Diritto alla portabilità dei dati",
+        "objection": "Diritto di opposizione al trattamento"
+      }
+    },
+    "complaint": {
+      "title": "10. Diritto di reclamo",
+      "description": "Hai il diritto di presentare un reclamo a un'autorità di controllo per la protezione dei dati riguardo al trattamento dei tuoi dati personali."
+    },
+    "changes": {
+      "title": "11. Modifiche",
+      "description": "Ci riserviamo il diritto di aggiornare questa informativa sulla privacy per riflettere i cambiamenti nei requisiti legali o le modifiche ai nostri servizi."
+    },
+    "lastUpdated": "Ultimo aggiornamento",
+    "backToHome": "Torna alla homepage"
   }
 }

@@ -335,5 +335,97 @@
     "fr": "Français",
     "es": "Español",
     "it": "Italiano"
+  },
+  "imprint": {
+    "title": "Impressum",
+    "provider": {
+      "title": "Angaben gemäß § 5 TMG",
+      "country": "Deutschland"
+    },
+    "contact": {
+      "title": "Kontakt",
+      "phone": "Telefon",
+      "email": "E-Mail"
+    },
+    "vat": {
+      "title": "Umsatzsteuer-ID",
+      "description": "Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG"
+    },
+    "responsible": {
+      "title": "Inhaltlich Verantwortlicher"
+    },
+    "dispute": {
+      "title": "Streitbeilegung",
+      "description": "Wir sind nicht bereit und nicht verpflichtet, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen."
+    },
+    "backToHome": "Zurück zur Startseite"
+  },
+  "privacy": {
+    "title": "Datenschutzerklärung",
+    "intro": {
+      "title": "1. Datenschutz auf einen Blick",
+      "description": "Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können."
+    },
+    "controller": {
+      "title": "2. Verantwortlicher",
+      "country": "Deutschland",
+      "email": "E-Mail"
+    },
+    "collection": {
+      "title": "3. Datenerfassung auf dieser Website",
+      "description": "Wir erfassen folgende Daten:",
+      "items": {
+        "account": "Kontodaten (Name, E-Mail-Adresse) bei der Registrierung",
+        "usage": "Nutzungsdaten (erstellte Zertifizierungen, Domains)",
+        "technical": "Technische Daten (IP-Adresse, Browser-Typ, Zugriffszeiten)"
+      }
+    },
+    "purpose": {
+      "title": "4. Zweck der Verarbeitung",
+      "items": {
+        "service": "Bereitstellung und Verbesserung unserer Dienste",
+        "communication": "Kommunikation mit Ihnen bezüglich Ihres Kontos",
+        "improvement": "Analyse zur Verbesserung unserer Website",
+        "legal": "Erfüllung rechtlicher Verpflichtungen"
+      }
+    },
+    "legal": {
+      "title": "5. Rechtsgrundlage",
+      "description": "Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung), Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) und Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)."
+    },
+    "cookies": {
+      "title": "6. Cookies",
+      "description": "Wir verwenden nur technisch notwendige Cookies, die für den Betrieb der Website erforderlich sind. Diese Cookies speichern Ihre Sitzungsinformationen und Spracheinstellungen."
+    },
+    "sharing": {
+      "title": "7. Datenweitergabe",
+      "description": "Ihre Daten werden nicht an Dritte verkauft. Eine Weitergabe erfolgt nur an Dienstleister, die uns bei der Bereitstellung unserer Dienste unterstützen, und nur im notwendigen Umfang."
+    },
+    "retention": {
+      "title": "8. Speicherdauer",
+      "description": "Ihre Daten werden gelöscht, sobald sie für die Erreichung des Zweckes ihrer Erhebung nicht mehr erforderlich sind. Kontodaten werden bei Löschung Ihres Kontos entfernt, sofern keine gesetzlichen Aufbewahrungsfristen entgegenstehen."
+    },
+    "rights": {
+      "title": "9. Ihre Rechte",
+      "description": "Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:",
+      "items": {
+        "access": "Recht auf Auskunft über Ihre gespeicherten Daten",
+        "rectification": "Recht auf Berichtigung unrichtiger Daten",
+        "erasure": "Recht auf Löschung Ihrer Daten",
+        "restriction": "Recht auf Einschränkung der Verarbeitung",
+        "portability": "Recht auf Datenübertragbarkeit",
+        "objection": "Recht auf Widerspruch gegen die Verarbeitung"
+      }
+    },
+    "complaint": {
+      "title": "10. Beschwerderecht",
+      "description": "Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren."
+    },
+    "changes": {
+      "title": "11. Änderungen",
+      "description": "Wir behalten uns vor, diese Datenschutzerklärung anzupassen, um sie an geänderte Rechtslagen oder bei Änderungen unserer Dienste anzupassen."
+    },
+    "lastUpdated": "Stand",
+    "backToHome": "Zurück zur Startseite"
   }
 }

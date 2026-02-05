@@ -335,5 +335,97 @@
     "fr": "Français",
     "es": "Español",
     "it": "Italiano"
+  },
+  "imprint": {
+    "title": "Mentions légales",
+    "provider": {
+      "title": "Informations sur le fournisseur",
+      "country": "Allemagne"
+    },
+    "contact": {
+      "title": "Contact",
+      "phone": "Téléphone",
+      "email": "E-mail"
+    },
+    "vat": {
+      "title": "Numéro de TVA",
+      "description": "Numéro d'identification TVA selon § 27a UStG"
+    },
+    "responsible": {
+      "title": "Responsable du contenu"
+    },
+    "dispute": {
+      "title": "Règlement des litiges",
+      "description": "Nous ne sommes pas disposés ni obligés de participer à des procédures de règlement des litiges devant un organisme de médiation des consommateurs."
+    },
+    "backToHome": "Retour à l'accueil"
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "intro": {
+      "title": "1. Confidentialité en bref",
+      "description": "Les informations suivantes donnent un aperçu simple de ce qui arrive à vos données personnelles lorsque vous visitez ce site. Les données personnelles sont toutes les données qui peuvent être utilisées pour vous identifier personnellement."
+    },
+    "controller": {
+      "title": "2. Responsable du traitement",
+      "country": "Allemagne",
+      "email": "E-mail"
+    },
+    "collection": {
+      "title": "3. Collecte de données sur ce site",
+      "description": "Nous collectons les données suivantes :",
+      "items": {
+        "account": "Données de compte (nom, adresse e-mail) lors de l'inscription",
+        "usage": "Données d'utilisation (certifications créées, domaines)",
+        "technical": "Données techniques (adresse IP, type de navigateur, heures d'accès)"
+      }
+    },
+    "purpose": {
+      "title": "4. Finalité du traitement",
+      "items": {
+        "service": "Fourniture et amélioration de nos services",
+        "communication": "Communication avec vous concernant votre compte",
+        "improvement": "Analyse pour améliorer notre site",
+        "legal": "Respect des obligations légales"
+      }
+    },
+    "legal": {
+      "title": "5. Base juridique",
+      "description": "Le traitement est basé sur l'art. 6(1)(b) RGPD (exécution du contrat), l'art. 6(1)(a) RGPD (consentement) et l'art. 6(1)(f) RGPD (intérêts légitimes)."
+    },
+    "cookies": {
+      "title": "6. Cookies",
+      "description": "Nous utilisons uniquement des cookies techniquement nécessaires au fonctionnement du site. Ces cookies stockent vos informations de session et vos paramètres de langue."
+    },
+    "sharing": {
+      "title": "7. Partage des données",
+      "description": "Vos données ne sont pas vendues à des tiers. Les données ne sont partagées qu'avec les prestataires de services qui nous aident à fournir nos services, et uniquement dans la mesure nécessaire."
+    },
+    "retention": {
+      "title": "8. Conservation des données",
+      "description": "Vos données seront supprimées dès qu'elles ne seront plus nécessaires aux fins pour lesquelles elles ont été collectées. Les données de compte sont supprimées lorsque vous supprimez votre compte, sauf si des délais de conservation légaux s'appliquent."
+    },
+    "rights": {
+      "title": "9. Vos droits",
+      "description": "Vous disposez des droits suivants concernant vos données personnelles :",
+      "items": {
+        "access": "Droit d'accès à vos données stockées",
+        "rectification": "Droit de rectification des données inexactes",
+        "erasure": "Droit à l'effacement de vos données",
+        "restriction": "Droit à la limitation du traitement",
+        "portability": "Droit à la portabilité des données",
+        "objection": "Droit d'opposition au traitement"
+      }
+    },
+    "complaint": {
+      "title": "10. Droit de réclamation",
+      "description": "Vous avez le droit de déposer une plainte auprès d'une autorité de contrôle de la protection des données concernant le traitement de vos données personnelles."
+    },
+    "changes": {
+      "title": "11. Modifications",
+      "description": "Nous nous réservons le droit de mettre à jour cette politique de confidentialité pour refléter les changements dans les exigences légales ou les modifications de nos services."
+    },
+    "lastUpdated": "Dernière mise à jour",
+    "backToHome": "Retour à l'accueil"
   }
 }

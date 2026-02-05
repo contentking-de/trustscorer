@@ -335,5 +335,97 @@
     "fr": "Français",
     "es": "Español",
     "it": "Italiano"
+  },
+  "imprint": {
+    "title": "Legal Notice",
+    "provider": {
+      "title": "Provider Information",
+      "country": "Germany"
+    },
+    "contact": {
+      "title": "Contact",
+      "phone": "Phone",
+      "email": "Email"
+    },
+    "vat": {
+      "title": "VAT ID",
+      "description": "VAT Identification Number according to § 27a UStG"
+    },
+    "responsible": {
+      "title": "Responsible for Content"
+    },
+    "dispute": {
+      "title": "Dispute Resolution",
+      "description": "We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board."
+    },
+    "backToHome": "Back to Homepage"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "intro": {
+      "title": "1. Privacy at a Glance",
+      "description": "The following information provides a simple overview of what happens to your personal data when you visit this website. Personal data is any data that can be used to personally identify you."
+    },
+    "controller": {
+      "title": "2. Data Controller",
+      "country": "Germany",
+      "email": "Email"
+    },
+    "collection": {
+      "title": "3. Data Collection on This Website",
+      "description": "We collect the following data:",
+      "items": {
+        "account": "Account data (name, email address) during registration",
+        "usage": "Usage data (certifications created, domains)",
+        "technical": "Technical data (IP address, browser type, access times)"
+      }
+    },
+    "purpose": {
+      "title": "4. Purpose of Processing",
+      "items": {
+        "service": "Provision and improvement of our services",
+        "communication": "Communication with you regarding your account",
+        "improvement": "Analysis to improve our website",
+        "legal": "Compliance with legal obligations"
+      }
+    },
+    "legal": {
+      "title": "5. Legal Basis",
+      "description": "Processing is based on Art. 6(1)(b) GDPR (contract performance), Art. 6(1)(a) GDPR (consent), and Art. 6(1)(f) GDPR (legitimate interests)."
+    },
+    "cookies": {
+      "title": "6. Cookies",
+      "description": "We only use technically necessary cookies required for the operation of the website. These cookies store your session information and language settings."
+    },
+    "sharing": {
+      "title": "7. Data Sharing",
+      "description": "Your data is not sold to third parties. Data is only shared with service providers who assist us in providing our services, and only to the extent necessary."
+    },
+    "retention": {
+      "title": "8. Data Retention",
+      "description": "Your data will be deleted as soon as it is no longer necessary for the purpose for which it was collected. Account data is removed when you delete your account, unless statutory retention periods apply."
+    },
+    "rights": {
+      "title": "9. Your Rights",
+      "description": "You have the following rights regarding your personal data:",
+      "items": {
+        "access": "Right to access your stored data",
+        "rectification": "Right to rectification of inaccurate data",
+        "erasure": "Right to erasure of your data",
+        "restriction": "Right to restriction of processing",
+        "portability": "Right to data portability",
+        "objection": "Right to object to processing"
+      }
+    },
+    "complaint": {
+      "title": "10. Right to Complain",
+      "description": "You have the right to lodge a complaint with a data protection supervisory authority regarding the processing of your personal data."
+    },
+    "changes": {
+      "title": "11. Changes",
+      "description": "We reserve the right to update this privacy policy to reflect changes in legal requirements or changes to our services."
+    },
+    "lastUpdated": "Last updated",
+    "backToHome": "Back to Homepage"
   }
 }
