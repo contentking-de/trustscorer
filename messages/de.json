@@ -427,5 +427,62 @@
     },
     "lastUpdated": "Stand",
     "backToHome": "Zurück zur Startseite"
+  },
+  "terms": {
+    "title": "Nutzungsbedingungen",
+    "scope": {
+      "title": "1. Geltungsbereich",
+      "description": "Diese Nutzungsbedingungen gelten für die Nutzung der Certiread-Plattform. Mit der Registrierung und Nutzung unserer Dienste akzeptieren Sie diese Bedingungen."
+    },
+    "services": {
+      "title": "2. Leistungsbeschreibung",
+      "description": "Certiread bietet eine Plattform zur Erstellung von Transparenz-Zertifikaten für digitale Inhalte. Publisher können damit dokumentieren, wie ihre Inhalte erstellt wurden, und dies durch ein verifizierbares Badge auf ihrer Website anzeigen."
+    },
+    "registration": {
+      "title": "3. Registrierung und Konto",
+      "description": "Zur Nutzung unserer Dienste ist eine Registrierung erforderlich. Sie verpflichten sich:",
+      "items": {
+        "accurate": "Wahrheitsgemäße und vollständige Angaben bei der Registrierung zu machen",
+        "secure": "Ihre Zugangsdaten sicher aufzubewahren und nicht an Dritte weiterzugeben",
+        "responsible": "Für alle Aktivitäten unter Ihrem Konto verantwortlich zu sein"
+      }
+    },
+    "obligations": {
+      "title": "4. Nutzungspflichten",
+      "description": "Bei der Nutzung von Certiread verpflichten Sie sich:",
+      "items": {
+        "lawful": "Die Plattform nur für rechtmäßige Zwecke zu nutzen",
+        "truthful": "Nur wahrheitsgemäße Angaben bei Zertifizierungen zu machen",
+        "noAbuse": "Die Plattform nicht zu missbrauchen oder zu manipulieren",
+        "noHarm": "Keine Inhalte zu zertifizieren, die gegen geltendes Recht verstoßen"
+      }
+    },
+    "certifications": {
+      "title": "5. Zertifizierungen",
+      "description": "Für erstellte Zertifizierungen gilt:",
+      "items": {
+        "ownership": "Sie dürfen nur Inhalte zertifizieren, für die Sie die erforderlichen Rechte besitzen",
+        "accuracy": "Die Angaben in der Zertifizierung müssen der Wahrheit entsprechen",
+        "revocation": "Wir behalten uns vor, falsche oder irreführende Zertifizierungen zu widerrufen"
+      }
+    },
+    "liability": {
+      "title": "6. Haftung",
+      "description": "Certiread haftet nicht für die Richtigkeit der von Nutzern erstellten Zertifizierungen. Die Verantwortung für die Korrektheit der Angaben liegt beim jeweiligen Nutzer. Unsere Haftung ist auf Vorsatz und grobe Fahrlässigkeit beschränkt."
+    },
+    "termination": {
+      "title": "7. Kündigung",
+      "description": "Sie können Ihr Konto jederzeit löschen. Wir behalten uns vor, Konten bei Verstößen gegen diese Nutzungsbedingungen zu sperren oder zu löschen. Bei Kündigung werden Ihre Zertifizierungen deaktiviert."
+    },
+    "changes": {
+      "title": "8. Änderungen der Nutzungsbedingungen",
+      "description": "Wir behalten uns vor, diese Nutzungsbedingungen jederzeit zu ändern. Über wesentliche Änderungen werden wir Sie per E-Mail informieren. Die weitere Nutzung nach Änderungen gilt als Zustimmung."
+    },
+    "law": {
+      "title": "9. Anwendbares Recht",
+      "description": "Es gilt deutsches Recht. Gerichtsstand ist, soweit gesetzlich zulässig, der Sitz des Betreibers."
+    },
+    "lastUpdated": "Stand",
+    "backToHome": "Zurück zur Startseite"
   }
 }

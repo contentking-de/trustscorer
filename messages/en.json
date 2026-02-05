@@ -427,5 +427,62 @@
     },
     "lastUpdated": "Last updated",
     "backToHome": "Back to Homepage"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "scope": {
+      "title": "1. Scope",
+      "description": "These terms of service apply to the use of the Certiread platform. By registering and using our services, you accept these terms."
+    },
+    "services": {
+      "title": "2. Service Description",
+      "description": "Certiread provides a platform for creating transparency certificates for digital content. Publishers can document how their content was created and display this through a verifiable badge on their website."
+    },
+    "registration": {
+      "title": "3. Registration and Account",
+      "description": "Registration is required to use our services. You agree to:",
+      "items": {
+        "accurate": "Provide truthful and complete information during registration",
+        "secure": "Keep your login credentials secure and not share them with third parties",
+        "responsible": "Be responsible for all activities under your account"
+      }
+    },
+    "obligations": {
+      "title": "4. User Obligations",
+      "description": "When using Certiread, you agree to:",
+      "items": {
+        "lawful": "Use the platform only for lawful purposes",
+        "truthful": "Only provide truthful information in certifications",
+        "noAbuse": "Not abuse or manipulate the platform",
+        "noHarm": "Not certify content that violates applicable law"
+      }
+    },
+    "certifications": {
+      "title": "5. Certifications",
+      "description": "For created certifications, the following applies:",
+      "items": {
+        "ownership": "You may only certify content for which you have the necessary rights",
+        "accuracy": "The information in the certification must be accurate",
+        "revocation": "We reserve the right to revoke false or misleading certifications"
+      }
+    },
+    "liability": {
+      "title": "6. Liability",
+      "description": "Certiread is not liable for the accuracy of certifications created by users. The responsibility for the correctness of the information lies with the respective user. Our liability is limited to intent and gross negligence."
+    },
+    "termination": {
+      "title": "7. Termination",
+      "description": "You can delete your account at any time. We reserve the right to suspend or delete accounts in case of violations of these terms of service. Upon termination, your certifications will be deactivated."
+    },
+    "changes": {
+      "title": "8. Changes to Terms of Service",
+      "description": "We reserve the right to change these terms of service at any time. We will inform you of significant changes by email. Continued use after changes constitutes acceptance."
+    },
+    "law": {
+      "title": "9. Applicable Law",
+      "description": "German law applies. The place of jurisdiction is, to the extent permitted by law, the registered office of the operator."
+    },
+    "lastUpdated": "Last updated",
+    "backToHome": "Back to Homepage"
   }
 }

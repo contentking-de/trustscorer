@@ -427,5 +427,62 @@
     },
     "lastUpdated": "Dernière mise à jour",
     "backToHome": "Retour à l'accueil"
+  },
+  "terms": {
+    "title": "Conditions d'utilisation",
+    "scope": {
+      "title": "1. Champ d'application",
+      "description": "Ces conditions d'utilisation s'appliquent à l'utilisation de la plateforme Certiread. En vous inscrivant et en utilisant nos services, vous acceptez ces conditions."
+    },
+    "services": {
+      "title": "2. Description des services",
+      "description": "Certiread fournit une plateforme pour créer des certificats de transparence pour le contenu numérique. Les éditeurs peuvent documenter comment leur contenu a été créé et l'afficher via un badge vérifiable sur leur site web."
+    },
+    "registration": {
+      "title": "3. Inscription et compte",
+      "description": "L'inscription est requise pour utiliser nos services. Vous acceptez de :",
+      "items": {
+        "accurate": "Fournir des informations véridiques et complètes lors de l'inscription",
+        "secure": "Garder vos identifiants de connexion en sécurité et ne pas les partager avec des tiers",
+        "responsible": "Être responsable de toutes les activités sous votre compte"
+      }
+    },
+    "obligations": {
+      "title": "4. Obligations de l'utilisateur",
+      "description": "En utilisant Certiread, vous acceptez de :",
+      "items": {
+        "lawful": "Utiliser la plateforme uniquement à des fins légales",
+        "truthful": "Fournir uniquement des informations véridiques dans les certifications",
+        "noAbuse": "Ne pas abuser ou manipuler la plateforme",
+        "noHarm": "Ne pas certifier de contenu qui viole la loi applicable"
+      }
+    },
+    "certifications": {
+      "title": "5. Certifications",
+      "description": "Pour les certifications créées, les règles suivantes s'appliquent :",
+      "items": {
+        "ownership": "Vous ne pouvez certifier que du contenu pour lequel vous détenez les droits nécessaires",
+        "accuracy": "Les informations dans la certification doivent être exactes",
+        "revocation": "Nous nous réservons le droit de révoquer les certifications fausses ou trompeuses"
+      }
+    },
+    "liability": {
+      "title": "6. Responsabilité",
+      "description": "Certiread n'est pas responsable de l'exactitude des certifications créées par les utilisateurs. La responsabilité de l'exactitude des informations incombe à l'utilisateur respectif. Notre responsabilité est limitée aux cas de faute intentionnelle et de négligence grave."
+    },
+    "termination": {
+      "title": "7. Résiliation",
+      "description": "Vous pouvez supprimer votre compte à tout moment. Nous nous réservons le droit de suspendre ou supprimer des comptes en cas de violation de ces conditions d'utilisation. En cas de résiliation, vos certifications seront désactivées."
+    },
+    "changes": {
+      "title": "8. Modifications des conditions d'utilisation",
+      "description": "Nous nous réservons le droit de modifier ces conditions d'utilisation à tout moment. Nous vous informerons des modifications importantes par e-mail. L'utilisation continue après les modifications constitue une acceptation."
+    },
+    "law": {
+      "title": "9. Droit applicable",
+      "description": "Le droit allemand s'applique. Le lieu de juridiction est, dans la mesure permise par la loi, le siège social de l'exploitant."
+    },
+    "lastUpdated": "Dernière mise à jour",
+    "backToHome": "Retour à l'accueil"
   }
 }

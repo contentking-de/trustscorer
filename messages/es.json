@@ -427,5 +427,62 @@
     },
     "lastUpdated": "Última actualización",
     "backToHome": "Volver al inicio"
+  },
+  "terms": {
+    "title": "Términos de servicio",
+    "scope": {
+      "title": "1. Ámbito de aplicación",
+      "description": "Estos términos de servicio se aplican al uso de la plataforma Certiread. Al registrarse y usar nuestros servicios, acepta estos términos."
+    },
+    "services": {
+      "title": "2. Descripción del servicio",
+      "description": "Certiread proporciona una plataforma para crear certificados de transparencia para contenido digital. Los editores pueden documentar cómo se creó su contenido y mostrarlo a través de una insignia verificable en su sitio web."
+    },
+    "registration": {
+      "title": "3. Registro y cuenta",
+      "description": "Se requiere registro para usar nuestros servicios. Usted acepta:",
+      "items": {
+        "accurate": "Proporcionar información veraz y completa durante el registro",
+        "secure": "Mantener sus credenciales de acceso seguras y no compartirlas con terceros",
+        "responsible": "Ser responsable de todas las actividades bajo su cuenta"
+      }
+    },
+    "obligations": {
+      "title": "4. Obligaciones del usuario",
+      "description": "Al usar Certiread, usted acepta:",
+      "items": {
+        "lawful": "Usar la plataforma solo para fines legales",
+        "truthful": "Proporcionar solo información veraz en las certificaciones",
+        "noAbuse": "No abusar ni manipular la plataforma",
+        "noHarm": "No certificar contenido que viole la ley aplicable"
+      }
+    },
+    "certifications": {
+      "title": "5. Certificaciones",
+      "description": "Para las certificaciones creadas, se aplica lo siguiente:",
+      "items": {
+        "ownership": "Solo puede certificar contenido para el cual tiene los derechos necesarios",
+        "accuracy": "La información en la certificación debe ser precisa",
+        "revocation": "Nos reservamos el derecho de revocar certificaciones falsas o engañosas"
+      }
+    },
+    "liability": {
+      "title": "6. Responsabilidad",
+      "description": "Certiread no es responsable de la exactitud de las certificaciones creadas por los usuarios. La responsabilidad de la corrección de la información recae en el usuario respectivo. Nuestra responsabilidad se limita a dolo y negligencia grave."
+    },
+    "termination": {
+      "title": "7. Terminación",
+      "description": "Puede eliminar su cuenta en cualquier momento. Nos reservamos el derecho de suspender o eliminar cuentas en caso de violaciones de estos términos de servicio. Al terminar, sus certificaciones serán desactivadas."
+    },
+    "changes": {
+      "title": "8. Cambios en los términos de servicio",
+      "description": "Nos reservamos el derecho de cambiar estos términos de servicio en cualquier momento. Le informaremos de cambios significativos por correo electrónico. El uso continuado después de los cambios constituye aceptación."
+    },
+    "law": {
+      "title": "9. Ley aplicable",
+      "description": "Se aplica la ley alemana. El lugar de jurisdicción es, en la medida permitida por la ley, el domicilio social del operador."
+    },
+    "lastUpdated": "Última actualización",
+    "backToHome": "Volver al inicio"
   }
 }
