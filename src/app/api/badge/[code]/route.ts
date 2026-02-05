@@ -45,7 +45,7 @@ export async function GET(
       domain: certification.domain.domain,
       author: certification.author?.name || null,
       creationProcess: certification.creationProcess.map(
-        (p) => creationProcessLabels[p] || p
+        (p: string) => creationProcessLabels[p] || p
       ),
       hasSourcesCited: certification.sourceTypes.includes("SOURCES_CITED"),
       hasFactCheck:
