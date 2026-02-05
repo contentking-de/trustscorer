@@ -190,7 +190,7 @@ export default async function VerifyPage({
                   Erstellungsprozess
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {certification.creationProcess.map((process) => (
+                  {certification.creationProcess.map((process: string) => (
                     <span
                       key={process}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-100 text-emerald-700 rounded-full text-sm"
@@ -219,7 +219,7 @@ export default async function VerifyPage({
                     Quellen & Recherche
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {certification.sourceTypes.map((source) => (
+                    {certification.sourceTypes.map((source: string) => (
                       <span
                         key={source}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm"
@@ -244,7 +244,7 @@ export default async function VerifyPage({
                     Faktencheck
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {certification.factCheckType.map((check) => (
+                    {certification.factCheckType.map((check: string) => (
                       <span
                         key={check}
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-100 text-purple-700 rounded-full text-sm"
