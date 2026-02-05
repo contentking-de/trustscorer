@@ -1,20 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { PrismaNeon } from "@prisma/adapter-neon";
-import { neonConfig, Pool } from "@neondatabase/serverless";
-
-// Für lokale Entwicklung WebSocket-Unterstützung deaktivieren
-neonConfig.webSocketConstructor = undefined;
-neonConfig.useSecureWebSocket = false;
-neonConfig.pipelineTLS = false;
-neonConfig.pipelineConnect = false;
 
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
 function createPrismaClient() {
-  const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-  const adapter = new PrismaNeon(pool);
+  const connectionString = process.env.DATABASE_URL;
+  const adapter = new PrismaNeon({ connectionString });
   
   return new PrismaClient({
     adapter,
