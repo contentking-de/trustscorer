@@ -57,15 +57,54 @@ export async function POST(request: Request) {
         verified = false;
       }
     } else if (method === "META") {
-      try {
-        const response = await fetch(`https://${domain.domain}`, {
-          headers: { "User-Agent": "Trustscorer-Verifier/1.0" },
-        });
-        const html = await response.text();
-        verified = html.includes(expectedToken);
-      } catch {
-        // Fetch failed
-        verified = false;
+      // Try HTTPS first, then HTTP as fallback
+      const urlsToTry = [
+        `https://${domain.domain}`,
+        `https://www.${domain.domain}`,
+        `http://${domain.domain}`,
+        `http://www.${domain.domain}`,
+      ];
+
+      // Use a realistic browser User-Agent to avoid being blocked by Cloudflare/WAFs
+      const headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+        "Accept-Language": "de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7",
+      };
+
+      for (const url of urlsToTry) {
+        try {
+          console.log(`Trying to verify domain at: ${url}`);
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+
+          const response = await fetch(url, {
+            headers,
+            redirect: "follow",
+            signal: controller.signal,
+          });
+          
+          clearTimeout(timeoutId);
+          
+          if (!response.ok) {
+            console.log(`URL ${url} returned status: ${response.status}`);
+            continue;
+          }
+
+          const html = await response.text();
+          console.log(`Checking for token in HTML from ${url}, HTML length: ${html.length}`);
+          
+          if (html.includes(expectedToken)) {
+            verified = true;
+            console.log(`Domain verified via ${url}`);
+            break;
+          } else {
+            console.log(`Token not found in ${url}. Expected: ${expectedToken}`);
+          }
+        } catch (error) {
+          console.log(`Failed to fetch ${url}:`, error instanceof Error ? error.message : error);
+          // Continue to next URL
+        }
       }
     } else {
       return NextResponse.json({ error: "Ungültige Methode" }, { status: 400 });
@@ -93,8 +132,12 @@ export async function POST(request: Request) {
         },
       });
 
+      const methodHint = method === "META" 
+        ? `Stelle sicher, dass das Meta-Tag <meta name="trustscorer-verify" content="${domain.verificationToken}"> im <head> Bereich deiner Seite ${domain.domain} vorhanden ist.`
+        : `Stelle sicher, dass der TXT-Record "${expectedToken}" für ${domain.domain} korrekt eingerichtet ist.`;
+
       return NextResponse.json({
-        message: "Verifizierung fehlgeschlagen. Bitte überprüfe die Einrichtung.",
+        message: `Verifizierung fehlgeschlagen. ${methodHint}`,
         verified: false,
       });
     }
